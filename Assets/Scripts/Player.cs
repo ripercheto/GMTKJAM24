@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     private WalkablePolygon walkableArea;
 
     private Vector3 velocity;
-    private bool isJumping;
+    public bool isKinematic;
 
     [Button]
     public void SetWalkableArea(WalkablePolygon newArea)
@@ -23,26 +23,22 @@ public class Player : MonoBehaviour
         var localPos = transform.localPosition;
         localPos.y = 0;
         transform.localPosition = localPos;
+        transform.localRotation = Quaternion.identity;
         walkableArea = newArea;
     }
 
-    public void SetJumping(bool isActive)
+    public void SetKinematic(bool isActive)
     {
-        isJumping = isActive;
+        isKinematic = isActive;
     }
 
     void Update()
     {
-        if (isJumping)
+        if (isKinematic)
         {
             return;
         }
-        Vector2 playerInput;
-        playerInput.x = Input.GetAxis("Horizontal");
-        playerInput.y = Input.GetAxis("Vertical");
-        playerInput = Vector2.ClampMagnitude(playerInput, 1f);
-
-        var desiredVelocity = playerInput * maxSpeed;
+        var desiredVelocity = PlayerInput.Directional * maxSpeed;
 
         var maxSpeedChange = maxAcceleration * Time.deltaTime;
         velocity.x = Mathf.MoveTowards(velocity.x, desiredVelocity.x, maxSpeedChange);

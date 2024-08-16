@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class JumpStart : JumpTarget
@@ -15,7 +13,7 @@ public class JumpStart : JumpTarget
 
     private void Update()
     {
-        pressedJump = Input.GetButtonDown("Fire1");
+        pressedJump = PlayerInput.PressedAction;
     }
 
     private void OnTriggerStay(Collider other)
@@ -24,11 +22,22 @@ public class JumpStart : JumpTarget
         {
             return;
         }
+        var player = other.GetComponent<Player>();
+        TryTriggerJump(player);
+    }
+
+    public void TryTriggerJump(Player player)
+    {
         if (coroutine != null)
         {
             return;
         }
-        var player = other.GetComponent<Player>();
+
+        if (player.isKinematic)
+        {
+            return;
+        }
+
         if (player == null)
         {
             return;
@@ -38,7 +47,7 @@ public class JumpStart : JumpTarget
 
     private IEnumerator JumpAnimation(Player player)
     {
-        player.SetJumping(true);
+        player.SetKinematic(true);
         var playerOffset = player.transform.position - transform.position;
         player.transform.parent = null;
         var t = 0f;
@@ -52,7 +61,7 @@ public class JumpStart : JumpTarget
             player.transform.position = newPos + yAddition;
             yield return null;
         }
-        player.SetJumping(false);
+        player.SetKinematic(false);
         player.SetWalkableArea(target.area);
         coroutine = null;
     }

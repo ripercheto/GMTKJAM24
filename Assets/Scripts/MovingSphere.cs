@@ -1,4 +1,5 @@
 ﻿using System;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class MovingSphere : MonoBehaviour
@@ -13,6 +14,16 @@ public class MovingSphere : MonoBehaviour
     private WalkablePolygon walkableArea;
 
     Vector3 velocity;
+
+    [Button]
+    public void JumpToWalkableArea(WalkablePolygon newArea)
+    {
+        transform.SetParent(newArea.transform);
+        var localPos = transform.localPosition;
+        localPos.y = 0;
+        transform.localPosition = localPos;
+        walkableArea = newArea;
+    }
 
     void Update()
     {

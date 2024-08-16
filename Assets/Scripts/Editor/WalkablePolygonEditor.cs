@@ -8,7 +8,7 @@ public class WalkablePolygonEditor : OdinEditor
     private void OnSceneGUI()
     {
         WalkablePolygon walkablePolygon = (WalkablePolygon)target;
-Handles.matrix =Matrix4x4.TRS(walkablePolygon.transform.position, walkablePolygon.transform.rotation, Vector3.one);
+        Handles.matrix = Matrix4x4.TRS(walkablePolygon.transform.position, walkablePolygon.transform.rotation, Vector3.one);
         // Iterate through each point and allow moving it
         for (int i = 0; i < walkablePolygon.polygonPoints.Count; i++)
         {

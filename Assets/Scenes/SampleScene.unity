@@ -347,7 +347,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSpeed: 10
   maxAcceleration: 100
-  plane: {fileID: 623247247}
+  walkableArea: {fileID: 623247247}
 --- !u!1 &531103970
 GameObject:
   m_ObjectHideFlags: 0
@@ -546,7 +546,7 @@ GameObject:
   - component: {fileID: 623247247}
   - component: {fileID: 623247248}
   m_Layer: 0
-  m_Name: Back
+  m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -561,7 +561,7 @@ Transform:
   m_GameObject: {fileID: 623247245}
   serializedVersion: 2
   m_LocalRotation: {x: -0.47470272, y: 0, z: 0, w: 0.88014627}
-  m_LocalPosition: {x: -0.4, y: 1.2, z: 1.6}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -581,12 +581,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9949abe353f953478721d529eb91a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  area:
-    serializedVersion: 2
-    x: -5
-    y: -5
-    width: 5
-    height: 10
+  polygonPoints:
+  - {x: -2.5, y: 5}
+  - {x: 2.5, y: 5}
+  - {x: 2.5, y: -5}
+  - {x: -2.5, y: -5}
 --- !u!111 &623247248
 Animation:
   m_ObjectHideFlags: 0
@@ -596,8 +595,9 @@ Animation:
   m_GameObject: {fileID: 623247245}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 0}
-  m_Animations: []
+  m_Animation: {fileID: 7400000, guid: d7e41afd960d83b4daf3bb71b751191c, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: d7e41afd960d83b4daf3bb71b751191c, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0

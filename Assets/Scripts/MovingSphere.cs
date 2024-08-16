@@ -10,7 +10,7 @@ public class MovingSphere : MonoBehaviour
     float maxAcceleration = 10f;
 
     [SerializeField]
-    private WalkablePlane plane;
+    private WalkablePolygon walkableArea;
 
     Vector3 velocity;
 
@@ -26,12 +26,12 @@ public class MovingSphere : MonoBehaviour
         var maxSpeedChange = maxAcceleration * Time.deltaTime;
         velocity.x = Mathf.MoveTowards(velocity.x, desiredVelocity.x, maxSpeedChange);
         velocity.z = Mathf.MoveTowards(velocity.z, desiredVelocity.y, maxSpeedChange);
-       
+
         var displacement = velocity * Time.deltaTime;
         var localPosition = transform.localPosition;
         var newPosition = localPosition + displacement;
 
-        plane.ClampPosition(ref velocity, ref newPosition);
+        walkableArea.ClampPosition(ref velocity, ref newPosition);
 
         transform.localPosition = newPosition;
     }

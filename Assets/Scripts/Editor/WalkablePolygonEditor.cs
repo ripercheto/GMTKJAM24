@@ -18,7 +18,7 @@ public class WalkablePolygonEditor : OdinEditor
             // Display a handle for each point
             Vector3 handlePosition = new Vector3(point.x, 0f, point.y);
             EditorGUI.BeginChangeCheck();
-            handlePosition = Handles.PositionHandle(handlePosition, Quaternion.identity);
+            handlePosition = Handles.FreeMoveHandle(handlePosition, 0.5f, Vector3.zero, Handles.CubeHandleCap);
             if (EditorGUI.EndChangeCheck())
             {
                 Undo.RecordObject(target, "Move Point");

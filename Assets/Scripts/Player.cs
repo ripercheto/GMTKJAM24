@@ -2,7 +2,7 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-public class MovingSphere : MonoBehaviour
+public class Player : MonoBehaviour
 {
     [SerializeField, Range(0f, 100f)]
     float maxSpeed = 10f;
@@ -13,10 +13,11 @@ public class MovingSphere : MonoBehaviour
     [SerializeField]
     private WalkablePolygon walkableArea;
 
-    Vector3 velocity;
+    private Vector3 velocity;
+    private bool isJumping;
 
     [Button]
-    public void JumpToWalkableArea(WalkablePolygon newArea)
+    public void SetWalkableArea(WalkablePolygon newArea)
     {
         transform.SetParent(newArea.transform);
         var localPos = transform.localPosition;
@@ -25,8 +26,17 @@ public class MovingSphere : MonoBehaviour
         walkableArea = newArea;
     }
 
+    public void SetJumping(bool isActive)
+    {
+        isJumping = isActive;
+    }
+
     void Update()
     {
+        if (isJumping)
+        {
+            return;
+        }
         Vector2 playerInput;
         playerInput.x = Input.GetAxis("Horizontal");
         playerInput.y = Input.GetAxis("Vertical");

@@ -70,7 +70,7 @@ public class JumpStartInteractable : Interactable
         Gizmos.DrawLine(transform.position, target.transform.position);
     }
 
-    private void OnValidate()
+    /*private void OnValidate()
     {
         if (target == null)
         {
@@ -87,5 +87,5 @@ public class JumpStartInteractable : Interactable
             return;
         }
         targetJumpStart.target = thisTarget;
-    }
+    }*/
 }

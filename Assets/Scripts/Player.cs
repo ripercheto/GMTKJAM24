@@ -4,32 +4,42 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField, Range(0f, 100f)]
-    float maxSpeed = 10f;
-
-    [SerializeField, Range(0f, 100f)]
-    float maxAcceleration = 10f;
-
-    [SerializeField]
-    private WalkablePolygon walkableArea;
+    public float maxSpeed = 10f;
+    public float maxAcceleration = 10f;
+    public Transform batterySocket;
+    
+    public bool isKinematic;
+    public WalkablePolygon walkableArea;
 
     private Vector3 velocity;
-    public bool isKinematic;
-
-    [Button]
+    private GameObject battery;
+    public bool HasBattery => battery != null;
+    
     public void SetWalkableArea(WalkablePolygon newArea)
     {
         transform.SetParent(newArea.transform);
         var localPos = transform.localPosition;
         localPos.y = 0;
-        transform.localPosition = localPos;
-        transform.localRotation = Quaternion.identity;
+        transform.SetLocalPositionAndRotation(localPos, Quaternion.identity);
         walkableArea = newArea;
     }
 
     public void SetKinematic(bool isActive)
     {
         isKinematic = isActive;
+    }
+
+    public void GiveBattery(GameObject batteryObject)
+    {
+        battery = batteryObject;
+        battery.transform.parent = batterySocket;
+        battery.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+    }
+
+    public GameObject RemoveBattery()
+    {
+        battery.transform.parent = null;
+        return battery;
     }
 
     void Update()

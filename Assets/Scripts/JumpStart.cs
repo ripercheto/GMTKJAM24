@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class JumpStart : Interactible
+public class JumpStart : Interactable
 {
     public JumpTarget target;
     public float duration = 0.5f;
@@ -9,7 +9,7 @@ public class JumpStart : Interactible
     public float height = 1f;
 
     private Coroutine coroutine;
-    
+
     public void TryTriggerJump(Player player)
     {
         if (player.isKinematic)
@@ -23,8 +23,9 @@ public class JumpStart : Interactible
         }
         coroutine = StartCoroutine(JumpAnimation(player));
     }
-    
+
     protected override bool CanInteract => coroutine == null;
+
     protected override void HandleInteraction(Player player)
     {
         TryTriggerJump(player);
@@ -53,6 +54,10 @@ public class JumpStart : Interactible
 
     private void OnDrawGizmos()
     {
+        if (target == null)
+        {
+            return;
+        }
         Gizmos.DrawLine(transform.position, target.transform.position);
     }
 }

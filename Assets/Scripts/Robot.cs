@@ -117,8 +117,8 @@ public class Robot : MonoBehaviour
 
         IEnumerator DestroyLaser()
         {
-            var laser = Instantiate(laserEffectPrefab, laserEffectSocket.position, Quaternion.identity);
-            laser.transform.forward = transform.forward;
+            var rotation = Quaternion.LookRotation(target.laserEffectSocket.position - laserEffectSocket.position);
+            var laser = Instantiate(laserEffectPrefab, laserEffectSocket.position, rotation);
             yield return new WaitForSeconds(laserEffectDestroyDelay);
             Destroy(laser.gameObject);
         }

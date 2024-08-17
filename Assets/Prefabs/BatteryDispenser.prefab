@@ -133,6 +133,7 @@ MonoBehaviour:
   animatorParameter: 0
   interactionDelay: 0.5
   needsInput: 1
+  textToShow: Interact to grab battery
   inputType: 0
   axisInputNeeded: {x: 0, y: 0}
   maxCharges: 3

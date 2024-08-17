@@ -39,6 +39,8 @@ public abstract class Interactable : MonoBehaviour
     [BoxGroup("Interaction")]
     public bool needsInput = true;
     [BoxGroup("Interaction"), ShowIf(nameof(needsInput))]
+    public string textToShow;
+    [BoxGroup("Interaction"), ShowIf(nameof(needsInput))]
     public InputType inputType;
     [BoxGroup("Interaction"), ShowIf(nameof(inputType), InputType.Axis)]
     public Vector2 axisInputNeeded;
@@ -80,6 +82,22 @@ public abstract class Interactable : MonoBehaviour
         if (animator != null)
         {
             animator.SetTrigger(animatorParameter);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (needsInput && inputType == InputType.Interactable)
+        {
+            GameCanvas.instance.ShowText(this);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (needsInput && inputType == InputType.Interactable)
+        {
+            GameCanvas.instance.HideText(this);
         }
     }
 

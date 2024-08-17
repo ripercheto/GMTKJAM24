@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -67,5 +68,24 @@ public class JumpStartInteractable : Interactable
             return;
         }
         Gizmos.DrawLine(transform.position, target.transform.position);
+    }
+
+    private void OnValidate()
+    {
+        if (target == null)
+        {
+            return;
+        }
+        var targetJumpStart = target.GetComponent<JumpStartInteractable>();
+        if (targetJumpStart == null)
+        {
+            return;
+        }
+        var thisTarget = GetComponent<JumpTarget>();
+        if (thisTarget == null)
+        {
+            return;
+        }
+        targetJumpStart.target = thisTarget;
     }
 }

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class WalkablePolygon : MonoBehaviour
@@ -82,5 +83,33 @@ public class WalkablePolygon : MonoBehaviour
 
         float projectLength = Mathf.Clamp(Vector2.Dot(point - start, line), 0f, lineLength);
         return start + line * projectLength;
+    }
+
+    [Button]
+    private void CenterPolygon()
+    {
+        Vector2 centroid = CalculateCentroid(polygonPoints);
+        CenterPointsAroundOrigin(centroid);
+    }
+
+    Vector2 CalculateCentroid(List<Vector2> points)
+    {
+        Vector2 centroid = Vector2.zero;
+
+        foreach (Vector2 point in points)
+        {
+            centroid += point;
+        }
+
+        centroid /= points.Count;
+        return centroid;
+    }
+
+    void CenterPointsAroundOrigin(Vector2 centroid)
+    {
+        for (int i = 0; i < polygonPoints.Count; i++)
+        {
+            polygonPoints[i] -= centroid;
+        }
     }
 }

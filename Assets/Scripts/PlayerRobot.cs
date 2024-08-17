@@ -20,7 +20,7 @@ public class PlayerRobot : Robot
         {
             return;
         }
-        if (rightArmAreas.Contains(player.walkableArea))
+        if (!rightArmAreas.Contains(player.walkableArea))
         {
             return;
         }
@@ -34,7 +34,7 @@ public class PlayerRobot : Robot
         {
             return;
         }
-        if (leftArmAreas.Contains(player.walkableArea))
+        if (!leftArmAreas.Contains(player.walkableArea))
         {
             return;
         }

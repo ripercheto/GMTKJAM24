@@ -22,7 +22,7 @@ public class Robot : MonoBehaviour
     public int chargePerBattery = 4;
 
     public Robot target;
-    
+
     public RobotAction shieldAction;
     public RobotAction punchAction;
 
@@ -55,6 +55,7 @@ public class Robot : MonoBehaviour
         else
         {
             health--;
+            Debug.Log($"{name} took damage. Health: {health}");
         }
     }
 
@@ -76,7 +77,7 @@ public class Robot : MonoBehaviour
         shieldAction.StartPrepare();
     }
 
-    public void PrepareLaser()
+    public void UseLaser()
     {
     }
 

@@ -18,17 +18,9 @@ public class RobotAI : MonoBehaviour
     [Serializable]
     public class AIFlow
     {
-        [BoxGroup("Player Power Check")]
-        [LabelText("Type")]
-        public Robot.PowerDirectionType playerPowerCheck;
-
         [BoxGroup("Enemy Power Check")]
         [LabelText("Target Type")]
         public Robot.PowerDirectionType enemyPowerTarget;
-        [BoxGroup("Enemy Power Check")]
-        public float chanceToCheckTarget;
-        [BoxGroup("Enemy Power Check")]
-        public float chanceToCheckOther;
 
         [BoxGroup("Chose Target")]
         [LabelText("Delay")]
@@ -70,33 +62,30 @@ public class RobotAI : MonoBehaviour
 
         public IEnumerator Check()
         {
-            if (ai.OpponentRobot.powerDirectionType != playerPowerCheck)
-            {
-                yield break;
-            }
+            ai.robot.ReceiveBattery();
 
-            var enemyPowerDirectionToCheck = RandomWithWeights(chanceToCheckTarget, chanceToCheckOther) == 0 ? enemyPowerTarget : Robot.Cycle(enemyPowerTarget);
-            if (ai.robot.powerDirectionType == enemyPowerDirectionToCheck)
+            Debug.Log($"Rolled to use {enemyPowerTarget}. Check if AI has power");
+            if (ai.robot.powerDirectionType == enemyPowerTarget)
             {
                 var delay = enemyPowerOnTargetSideDelay.GetRandom();
-                Debug.Log($"{playerPowerCheck} Flow rolled to check if enemy has power to the {enemyPowerTarget}. Waiting for {delay} seconds");
+                Debug.Log($"{enemyPowerTarget} Flow has power. Waiting for {delay} seconds");
                 yield return new WaitForSeconds(delay);
                 var shouldLaser = RandomWithWeights(targetSideChanceToLaser, targetSideChanceToAction) == 0;
                 if (shouldLaser)
                 {
-                    Debug.Log($"{playerPowerCheck} Flow rolled to prepare laser");
-                    ai.robot.PrepareLaser();
+                    Debug.Log($"{enemyPowerTarget} Flow rolled to use laser");
+                    ai.robot.UseLaser();
                 }
                 else
                 {
-                    Debug.Log($"{playerPowerCheck} Flow rolled to prepare {enemyPowerTarget} action.");
+                    Debug.Log($"{enemyPowerTarget} Flow rolled to prepare {action.direction} action.");
                     action.StartPrepare();
                 }
             }
             else
             {
                 var delay = enemyPowerOnOtherSideDelay.GetRandom();
-                Debug.Log($"{playerPowerCheck} Flow rolled to check if enemy has power to the {Robot.Cycle(enemyPowerTarget)}. Waiting for {delay} seconds");
+                Debug.Log($"{enemyPowerTarget} Flow does not have power. Waiting for {delay} seconds");
                 yield return new WaitForSeconds(delay);
                 var choice = RandomWithWeights(otherSideChanceToPrepare, otherSideChanceToSwitchPower, otherSideChanceToLaser);
                 switch (choice)
@@ -104,10 +93,10 @@ public class RobotAI : MonoBehaviour
                     case 0:
                     {
                         delay = otherSideChanceToPrepareSwitchPowerDelay.GetRandom();
-                        Debug.Log($"{playerPowerCheck} Flow on {Robot.Cycle(enemyPowerTarget)} rolled to start preparing  action. Waiting for {delay} seconds to change power");
+                        Debug.Log($"{enemyPowerTarget} Flow rolled to start preparing  action. Waiting for {delay} seconds to change power");
                         action.StartPrepare();
                         yield return new WaitForSeconds(delay);
-                        Debug.Log($"{playerPowerCheck} Flow on {Robot.Cycle(enemyPowerTarget)} changing power");
+                        Debug.Log($"{enemyPowerTarget} Flow changing power");
                         ai.robot.CyclePowerDirection();
                     }
                         break;
@@ -116,13 +105,13 @@ public class RobotAI : MonoBehaviour
                         delay = otherSideChanceToSwitchPowerDelay.GetRandom();
                         ai.robot.CyclePowerDirection();
                         yield return new WaitForSeconds(delay);
-                        Debug.Log($"{playerPowerCheck} Flow on {Robot.Cycle(enemyPowerTarget)} start preparing");
+                        Debug.Log($"{enemyPowerTarget} Flow rolled to start preparing {action.direction}");
                         action.StartPrepare();
                     }
                         break;
                     case 2:
-                        Debug.Log($"{playerPowerCheck} Flow on {Robot.Cycle(enemyPowerTarget)} rolled to shoot laser");
-                        ai.robot.PrepareLaser();
+                        Debug.Log($"{enemyPowerTarget} Flow rolled to shoot laser");
+                        ai.robot.UseLaser();
                         break;
                 }
             }
@@ -131,6 +120,8 @@ public class RobotAI : MonoBehaviour
 
     public Robot robot;
     public AIFlow shieldFlow, punchFlow;
+
+    public float playerLeftChanceToLeft, playerLeftChanceToRight, playerRightChanceToLeft, playerRightChanceToRight;
 
     private Robot OpponentRobot => robot.target;
 
@@ -141,9 +132,18 @@ public class RobotAI : MonoBehaviour
 
         while (true)
         {
-            yield return shieldFlow.Check();
-            yield return punchFlow.Check();
-            yield return new WaitForSeconds(1f);
+            Debug.Log($"Player has power to {OpponentRobot.powerDirectionType}, proceeding");
+            if (OpponentRobot.powerDirectionType == Robot.PowerDirectionType.Left)
+            {
+                var flowToUse = RandomWithWeights(playerLeftChanceToLeft, playerLeftChanceToRight) == 0 ? shieldFlow : punchFlow;
+                yield return flowToUse.Check();
+            }
+            else if (OpponentRobot.powerDirectionType == Robot.PowerDirectionType.Right)
+            {
+                var flowToUse = RandomWithWeights(playerRightChanceToLeft, playerRightChanceToRight) == 0 ? shieldFlow : punchFlow;
+                yield return flowToUse.Check();
+            }
+            Debug.Log($"AI LOOP END");
         }
     }
 

@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -9,7 +7,7 @@ public class Robot : MonoBehaviour
     public enum PowerDirectionType
     {
         Left,
-        Right,
+        Right
     }
 
     public enum RobotActionStateType
@@ -17,15 +15,14 @@ public class Robot : MonoBehaviour
         Idle,
         Preparing,
         Prepared,
-        Active,
+        Active
     }
 
+    public int health = 4;
     public int chargePerBattery = 4;
 
-    public Player player;
-    public List<WalkablePolygon> leftArmAreas, rightArmAreas;
-    public WalkablePolygon leftRespawnArea, rightRespawnArea;
-
+    public Robot target;
+    
     public RobotAction shieldAction;
     public RobotAction punchAction;
 
@@ -37,7 +34,7 @@ public class Robot : MonoBehaviour
     private void Awake()
     {
         shieldAction.Initialize(this, null);
-        punchAction.Initialize(this, HandleOnPlayerPunch);
+        punchAction.Initialize(this, HandleOnActivatePunch);
     }
 
     public void ReceiveBattery()
@@ -48,15 +45,17 @@ public class Robot : MonoBehaviour
     }
 
     [Button]
-    public void ReceivePunch()
+    public virtual void ReceivePunch()
     {
         if (shieldAction.State == RobotActionStateType.Active)
         {
             HandleOnBlockPunch();
             shieldAction.TryCancelActiveState();
         }
-        var leftSide = player.transform.position.x < 0;
-        player.MakeFallOff(leftSide ? leftRespawnArea : rightRespawnArea);
+        else
+        {
+            health--;
+        }
     }
 
     public void CyclePowerDirection()
@@ -81,30 +80,14 @@ public class Robot : MonoBehaviour
     {
     }
 
-    private void HandleOnPlayerPunch()
+    protected virtual void HandleOnActivatePunch()
     {
-        if (player.isKinematic)
-        {
-            return;
-        }
-        if (rightArmAreas.Contains(player.walkableArea))
-        {
-            return;
-        }
-        player.MakeFallOff(rightRespawnArea);
+        target.ReceivePunch();
     }
 
-    private void HandleOnBlockPunch()
+    protected virtual void HandleOnBlockPunch()
     {
-        if (player.isKinematic)
-        {
-            return;
-        }
-        if (leftArmAreas.Contains(player.walkableArea))
-        {
-            return;
-        }
-        player.MakeFallOff(leftRespawnArea);
+
     }
 
     public static PowerDirectionType Cycle(PowerDirectionType type)

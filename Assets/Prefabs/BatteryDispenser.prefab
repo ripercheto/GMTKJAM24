@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 0e679a73bcca8b54caab2622afea75b9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -129,8 +129,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbacd8bbbbdbd704f928719f74d951df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
+  animatorParameter: 0
   interactionDelay: 0.5
   needsInput: 1
+  inputType: 0
+  axisInputNeeded: {x: 0, y: 0}
   maxCharges: 3
   rechargeDuration: 10
   batteryPrefab: {fileID: 0}

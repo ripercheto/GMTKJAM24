@@ -4,11 +4,11 @@ using UnityEngine;
 
 public abstract class BaseRobotInteractable : Interactable
 {
-    public Robot robot;
+    public PlayerRobot robot;
 
     protected virtual void OnValidate()
     {
-        robot = FindComponentInParent<Robot>(transform);
+        robot = FindComponentInParent<PlayerRobot>(transform);
     }
 
     public static T FindComponentInParent<T>(Transform child) where T : Component

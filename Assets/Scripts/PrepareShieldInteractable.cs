@@ -10,9 +10,4 @@ public class PrepareShieldInteractable : BaseRobotInteractable
     {
         robot.PrepareShield();
     }
-
-    protected override void OnValidate()
-    {
-        base.OnValidate();
-    }
 }

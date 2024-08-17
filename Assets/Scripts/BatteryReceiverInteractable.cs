@@ -15,6 +15,6 @@ public class BatteryReceiverInteractable : BaseRobotInteractable
         }
         var battery = player.RemoveBattery();
         Destroy(battery);
-        robot.GetBattery();
+        robot.ReceiveBattery();
     }
 }

@@ -50,12 +50,13 @@ public class Robot : MonoBehaviour
     [Button]
     public void ReceivePunch()
     {
-        if (shieldAction.State != RobotActionStateType.Active)
+        if (shieldAction.State == RobotActionStateType.Active)
         {
-            return;
+            HandleOnBlockPunch();
+            shieldAction.TryCancelActiveState();
         }
-        HandleOnBlockPunch();
-        shieldAction.TryCancelActiveState();
+        var leftSide = player.transform.position.x < 0;
+        player.MakeFallOff(leftSide ? leftRespawnArea : rightRespawnArea);
     }
 
     public void CyclePowerDirection()

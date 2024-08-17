@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class JumpStart : Interactable
+public class JumpStartInteractable : Interactable
 {
     public JumpTarget target;
     public float duration = 0.5f;

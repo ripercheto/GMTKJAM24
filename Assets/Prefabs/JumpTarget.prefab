@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1529128677205542051}
   - component: {fileID: -4931587175949348991}
   m_Layer: 0
-  m_Name: JumpEnd
+  m_Name: JumpTarget
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

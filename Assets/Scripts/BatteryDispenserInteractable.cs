@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BatteryDispenser : Interactable
+public class BatteryDispenserInteractable : Interactable
 {
     public int maxCharges;
     public float rechargeDuration;

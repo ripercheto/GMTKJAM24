@@ -78,6 +78,7 @@ public class RobotAI : MonoBehaviour
             var enemyPowerDirectionToCheck = RandomWithWeights(chanceToCheckTarget, chanceToCheckOther) == 0 ? enemyPowerTarget : Robot.Cycle(enemyPowerTarget);
             if (ai.robot.powerDirectionType == enemyPowerDirectionToCheck)
             {
+                Debug.Log("");
                 yield return new WaitForSeconds(enemyPowerOnTargetSideDelay.GetRandom());
                 var shouldLaser = RandomWithWeights(targetSideChanceToLaser, targetSideChanceToAction) == 0;
                 if (shouldLaser)
@@ -121,6 +122,9 @@ public class RobotAI : MonoBehaviour
 
     public IEnumerator Start()
     {
+        shieldFlow.Initialize(this, robot.shieldAction);
+        punchFlow.Initialize(this, robot.punchAction);
+        
         while (true)
         {
             yield return shieldFlow.Check();

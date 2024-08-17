@@ -6,89 +6,144 @@ using UnityEngine;
 
 public class Robot : MonoBehaviour
 {
+    [Serializable]
+    public class RobotAction
+    {
+        public int cost = 1;
+        public float prepareTime = 2;
+        public float activeTime = 2;
+        public PowerDirectionType direction = PowerDirectionType.Left;
+
+        [ShowInInspector, ReadOnly]
+        public RobotActionStateType State { get; private set; }
+
+        private Robot robot;
+        private Action activeAction;
+        private Coroutine activeCoroutine;
+
+        public void Initialize(Robot parent, Action actionOnActive)
+        {
+            robot = parent;
+            activeAction = actionOnActive;
+        }
+
+        public void StartPrepare()
+        {
+            State = RobotActionStateType.Preparing;
+            robot.StartCoroutine(HandlePreparing());
+
+            IEnumerator HandlePreparing()
+            {
+                yield return new WaitForSeconds(prepareTime);
+                State = RobotActionStateType.Prepared;
+                TryActivateState();
+            }
+        }
+
+        public void TryActivateState()
+        {
+            if (robot.charges < cost)
+            {
+                return;
+            }
+            if (State != RobotActionStateType.Prepared)
+            {
+                return;
+            }
+            if (robot.powerDirectionType != direction)
+            {
+                return;
+            }
+
+            State = RobotActionStateType.Active;
+            robot.charges -= cost;
+            activeAction?.Invoke();
+
+            activeCoroutine = robot.StartCoroutine(HandleCooldown());
+
+            IEnumerator HandleCooldown()
+            {
+                yield return new WaitForSeconds(activeTime);
+                State = RobotActionStateType.Idle;
+                activeCoroutine = null;
+            }
+        }
+
+        private void TryCancelShielding()
+        {
+            if (robot.powerDirectionType == direction)
+            {
+                return;
+            }
+            if (State != RobotActionStateType.Active)
+            {
+                return;
+            }
+
+            State = RobotActionStateType.Idle;
+            if (activeCoroutine == null)
+            {
+                return;
+            }
+            robot.StopCoroutine(activeCoroutine);
+        }
+    }
+
     public enum PowerDirectionType
     {
         Left,
         Right,
     }
-    public enum ShieldStateType
+
+    public enum RobotActionStateType
     {
         Idle,
         Preparing,
         Prepared,
-        Shielding,
+        Active,
     }
+
     public int chargePerBattery = 4;
 
-    [BoxGroup("Shield")]
-    public int costPerShield = 1;
-    [BoxGroup("Shield")]
-    public float shieldPrepareTime = 2;
-    [BoxGroup("Shield")]
-    public float shieldActiveTime = 2;
-    [BoxGroup("Shield")]
-    public PowerDirectionType shieldDirection = PowerDirectionType.Left;
+    public RobotAction shieldAction;
+    public RobotAction punchAction;
 
     [ShowInInspector, ReadOnly]
     private int charges;
     [ShowInInspector, ReadOnly]
     private PowerDirectionType powerDirectionType;
 
-    public ShieldStateType ShieldState { get; private set; }
+    private void Awake()
+    {
+        shieldAction.Initialize(this, null);
+        punchAction.Initialize(this, HandleOnPunch);
+    }
 
     public void ReceiveBattery()
     {
         charges = chargePerBattery;
-        CheckShieldState();
+        shieldAction.TryActivateState();
+        punchAction.TryActivateState();
     }
 
     public void CyclePowerDirection()
     {
         powerDirectionType = (PowerDirectionType)(((int)powerDirectionType + 1) % Enum.GetValues(typeof(PowerDirectionType)).Length);
-        CheckShieldState();
+        shieldAction.TryActivateState();
+        punchAction.TryActivateState();
+    }
+
+    public void PreparePunch()
+    {
+        punchAction.StartPrepare();
     }
 
     public void PrepareShield()
     {
-        ShieldState = ShieldStateType.Preparing;
-        StartCoroutine(HandlePreparing());
-
-        IEnumerator HandlePreparing()
-        {
-            yield return new WaitForSeconds(shieldPrepareTime);
-            ShieldState = ShieldStateType.Prepared;
-            CheckShieldState();
-        }
+        shieldAction.StartPrepare();
     }
 
-    private void CheckShieldState()
-    {
-        if (charges < costPerShield)
-        {
-            return;
-        }
-        if (ShieldState != ShieldStateType.Prepared)
-        {
-            return;
-        }
-        if (powerDirectionType != shieldDirection)
-        {
-            return;
-        }
-
-        ShieldState = ShieldStateType.Shielding;
-        charges -= costPerShield;
-
-        StartCoroutine(HandleCooldown());
-
-        IEnumerator HandleCooldown()
-        {
-            yield return new WaitForSeconds(shieldActiveTime);
-            ShieldState = ShieldStateType.Idle;
-        }
-    }
-
-    public void PreparePunch()
+    private void HandleOnPunch()
     {
     }
 }

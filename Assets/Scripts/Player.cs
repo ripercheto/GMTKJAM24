@@ -14,7 +14,12 @@ public class Player : MonoBehaviour
     private Vector3 velocity;
     private GameObject battery;
     public bool HasBattery => battery != null;
-    
+
+    private void Awake()
+    {
+        SetWalkableArea(walkableArea);
+    }
+
     public void SetWalkableArea(WalkablePolygon newArea)
     {
         transform.SetParent(newArea.transform);

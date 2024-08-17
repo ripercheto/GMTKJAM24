@@ -69,12 +69,13 @@ public class Robot : MonoBehaviour
             }
         }
 
-        private void TryCancelShielding()
+        public void TryCancelActiveState()
         {
             if (robot.powerDirectionType == direction)
             {
                 return;
             }
+
             if (State != RobotActionStateType.Active)
             {
                 return;
@@ -119,7 +120,7 @@ public class Robot : MonoBehaviour
     private void Awake()
     {
         shieldAction.Initialize(this, null);
-        punchAction.Initialize(this, HandleOnPunch);
+        punchAction.Initialize(this, HandleOnPlayerPunch);
     }
 
     public void ReceiveBattery()
@@ -129,10 +130,22 @@ public class Robot : MonoBehaviour
         punchAction.TryActivateState();
     }
 
+    [Button]
+    public void ReceivePunch()
+    {
+        if (shieldAction.State != RobotActionStateType.Active)
+        {
+            return;
+        }
+        HandleOnBlockPunch();
+        shieldAction.TryCancelActiveState();
+    }
+
     public void CyclePowerDirection()
     {
         powerDirectionType = (PowerDirectionType)(((int)powerDirectionType + 1) % Enum.GetValues(typeof(PowerDirectionType)).Length);
         shieldAction.TryActivateState();
+        shieldAction.TryCancelActiveState();
         punchAction.TryActivateState();
     }
 
@@ -146,7 +159,7 @@ public class Robot : MonoBehaviour
         shieldAction.StartPrepare();
     }
 
-    private void HandleOnPunch()
+    private void HandleOnPlayerPunch()
     {
         if (player.isKinematic)
         {
@@ -157,5 +170,18 @@ public class Robot : MonoBehaviour
             return;
         }
         player.MakeFallOff(rightRespawnArea);
+    }
+
+    private void HandleOnBlockPunch()
+    {
+        if (player.isKinematic)
+        {
+            return;
+        }
+        if (player.walkableArea != leftArmArea)
+        {
+            return;
+        }
+        player.MakeFallOff(leftRespawnArea);
     }
 }

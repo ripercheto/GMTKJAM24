@@ -41,7 +41,6 @@ public class JumpStartInteractable : Interactable
 
         playerTransform.parent = null;
         var playerOffset = playerTransform.position - startTransform.position;
-        var up = (startTransform.up + targetTransform.up) * 0.5f;
 
         var t = 0f;
         while (t < 1f)
@@ -51,6 +50,7 @@ public class JumpStartInteractable : Interactable
             var targetPos = targetTransform.position;
             var newPos = Vector3.Lerp(startPos, targetPos, t);
             var rot = Quaternion.Lerp(startTransform.rotation, targetTransform.rotation, t);
+            var up = (startTransform.up + targetTransform.up) * 0.5f;
             var yAddition = up * (jumpHeightCurve.Evaluate(t) * height);
             playerTransform.SetPositionAndRotation(newPos + yAddition, rot);
             yield return null;

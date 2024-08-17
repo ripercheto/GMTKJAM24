@@ -42,7 +42,7 @@ public class Robot : MonoBehaviour
                 return false;
             }
 
-            if (laserUseTime < Time.time)
+            if (Time.time < laserUseTime)
             {
                 return false;
             }
@@ -117,7 +117,7 @@ public class Robot : MonoBehaviour
 
         IEnumerator DestroyLaser()
         {
-            var laser = Instantiate(laserEffectPrefab, laserEffectSocket);
+            var laser = Instantiate(laserEffectPrefab, laserEffectSocket.position, Quaternion.identity);
             yield return new WaitForSeconds(laserEffectDestroyDelay);
             Destroy(laser.gameObject);
         }

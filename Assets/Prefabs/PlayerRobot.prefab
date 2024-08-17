@@ -555,7 +555,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2466171120452722624}
   - component: {fileID: 3364565065417454356}
-  - component: {fileID: 2737782751560647368}
+  - component: {fileID: 1200072496874351764}
   m_Layer: 0
   m_Name: PlayerRobot
   m_TagString: Untagged
@@ -631,22 +631,27 @@ MonoBehaviour:
   - {fileID: 3964817225304883367}
   leftRespawnArea: {fileID: 3841030687417721858}
   rightRespawnArea: {fileID: 7125190356537922793}
---- !u!111 &2737782751560647368
-Animation:
+--- !u!95 &1200072496874351764
+Animator:
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8295912281653100874}
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: d7e41afd960d83b4daf3bb71b751191c, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: d7e41afd960d83b4daf3bb71b751191c, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ec26469d945da964b9299fd1d2f833e2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8697928224566421686
 GameObject:
   m_ObjectHideFlags: 0
@@ -813,12 +818,12 @@ PrefabInstance:
     - target: {fileID: 6018588062423511640, guid: 49fdd840cd9a0ff40820bae33800f51b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 6018588062423511640, guid: 49fdd840cd9a0ff40820bae33800f51b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.7953181
+      value: 0.68
       objectReference: {fileID: 0}
     - target: {fileID: 6018588062423511640, guid: 49fdd840cd9a0ff40820bae33800f51b,
         type: 3}
@@ -2356,7 +2361,7 @@ PrefabInstance:
         type: 3}
       propertyPath: target
       value: 
-      objectReference: {fileID: 7381127260688521457}
+      objectReference: {fileID: 5128016649170203868}
     - target: {fileID: 1180263117368195660, guid: 49fdd840cd9a0ff40820bae33800f51b,
         type: 3}
       propertyPath: duration
@@ -3908,7 +3913,7 @@ PrefabInstance:
     - target: {fileID: 6018588062423511640, guid: 49fdd840cd9a0ff40820bae33800f51b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.72
+      value: 4.09
       objectReference: {fileID: 0}
     - target: {fileID: 6018588062423511640, guid: 49fdd840cd9a0ff40820bae33800f51b,
         type: 3}
@@ -4296,12 +4301,12 @@ PrefabInstance:
     - target: {fileID: 6018588062423511640, guid: 49fdd840cd9a0ff40820bae33800f51b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6018588062423511640, guid: 49fdd840cd9a0ff40820bae33800f51b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.72
+      value: 4.1
       objectReference: {fileID: 0}
     - target: {fileID: 6018588062423511640, guid: 49fdd840cd9a0ff40820bae33800f51b,
         type: 3}
@@ -4383,11 +4388,11 @@ PrefabInstance:
         type: 3}
       propertyPath: animator
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1200072496874351764}
     - target: {fileID: -5924136867213529871, guid: 24eab2d2ba17fd24da8a61cd3506fc74,
         type: 3}
       propertyPath: animatorParameter
-      value: 1749372462
+      value: 294066121
       objectReference: {fileID: 0}
     - target: {fileID: 1946000396555032496, guid: 24eab2d2ba17fd24da8a61cd3506fc74,
         type: 3}

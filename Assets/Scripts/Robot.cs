@@ -61,7 +61,7 @@ public class Robot : MonoBehaviour
 
     public void CyclePowerDirection()
     {
-        powerDirectionType = (PowerDirectionType)(((int)powerDirectionType + 1) % Enum.GetValues(typeof(PowerDirectionType)).Length);
+        powerDirectionType = Cycle(powerDirectionType);
         shieldAction.TryActivateState();
         shieldAction.TryCancelActiveState();
         punchAction.TryActivateState();
@@ -75,6 +75,10 @@ public class Robot : MonoBehaviour
     public void PrepareShield()
     {
         shieldAction.StartPrepare();
+    }
+
+    public void PrepareLaser()
+    {
     }
 
     private void HandleOnPlayerPunch()
@@ -101,5 +105,10 @@ public class Robot : MonoBehaviour
             return;
         }
         player.MakeFallOff(leftRespawnArea);
+    }
+
+    public static PowerDirectionType Cycle(PowerDirectionType type)
+    {
+        return (PowerDirectionType)(((int)type + 1) % Enum.GetValues(typeof(PowerDirectionType)).Length);
     }
 }

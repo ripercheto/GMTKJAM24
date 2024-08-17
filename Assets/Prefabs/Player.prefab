@@ -219,7 +219,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSpeed: 10
   maxAcceleration: 100
+  ragDollImpulse: {x: 0, y: 0, z: -500}
   batterySocket: {fileID: 8447510379440163921}
+  body: {fileID: 7112210144139465877}
   isKinematic: 0
   walkableArea: {fileID: 0}
 --- !u!135 &7400308462559363563

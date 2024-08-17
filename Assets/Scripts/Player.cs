@@ -6,7 +6,9 @@ public class Player : MonoBehaviour
 {
     public float maxSpeed = 10f;
     public float maxAcceleration = 10f;
+    public Vector3 ragDollImpulse;
     public Transform batterySocket;
+    public Rigidbody body;
     
     public bool isKinematic;
     public WalkablePolygon walkableArea;
@@ -45,6 +47,14 @@ public class Player : MonoBehaviour
     {
         battery.transform.parent = null;
         return battery;
+    }
+
+    [Button]
+    public void RagDollOff()
+    {
+        isKinematic = true;
+        body.isKinematic = false;
+        body.AddForce(ragDollImpulse, ForceMode.Impulse);
     }
 
     void Update()

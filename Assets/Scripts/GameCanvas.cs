@@ -9,7 +9,7 @@ public class GameCanvas : MonoBehaviour
     public static GameCanvas instance;
     public TextMeshProUGUI interactionText;
 
-    private Interactable interactableTriggered;
+    private List<Interactable> interactables = new();
 
     private void Awake()
     {
@@ -18,17 +18,23 @@ public class GameCanvas : MonoBehaviour
 
     public void ShowText(Interactable interactable)
     {
-        interactableTriggered = interactable;
+        interactables.Add(interactable);
         interactionText.gameObject.SetActive(true);
-        interactionText.SetText(interactableTriggered.textToShow);
+        interactionText.SetText(interactable.textToShow);
     }
 
     public void HideText(Interactable interactable)
     {
-        if (interactableTriggered != interactable)
+        interactables.Remove(interactable);
+        if (interactables.Count == 0)
         {
-            return;
+            interactionText.gameObject.SetActive(false);
         }
-        interactionText.gameObject.SetActive(false);
+        else
+        {
+            var first = interactables[0];
+            interactables.RemoveAt(0);
+            interactionText.SetText(first.textToShow);
+        }
     }
 }

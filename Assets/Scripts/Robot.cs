@@ -56,7 +56,7 @@ public class Robot : MonoBehaviour
         shieldAction.TryActivateState();
         punchAction.TryActivateState();
     }
-    
+
     public virtual void ReceivePunch()
     {
         if (shieldAction.State == RobotActionStateType.Active)
@@ -118,6 +118,8 @@ public class Robot : MonoBehaviour
     private void TakeDamage()
     {
         health--;
+        shieldAction.ForceCancel();
+        punchAction.ForceCancel();
         Debug.Log($"{name} took damage. Health: {health}");
     }
 

@@ -31,7 +31,7 @@ public abstract class Interactable : MonoBehaviour
                 pressedInteract = PlayerInput.PressingAction;
                 break;
             case InputType.Axis:
-                pressedInteract = Vector2.Dot(PlayerInput.Directional, axisInputNeeded) > 0.9f;
+                pressedInteract = Vector2.Dot(PlayerInput.Directional, axisInputNeeded) > 0.5f;
                 break;
         }
     }

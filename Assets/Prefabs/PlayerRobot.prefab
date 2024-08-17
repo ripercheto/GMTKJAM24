@@ -548,9 +548,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 4
   chargePerBattery: 4
+  target: {fileID: 0}
   laserCost: 4
   laserCooldown: 5
-  target: {fileID: 0}
+  laserEffectSocket: {fileID: 2081467017098138879}
+  laserEffectPrefab: {fileID: 643361954127317881, guid: cf38dba991be90442b567d1506e76f17,
+    type: 3}
+  laserEffectDestroyDelay: 2
   shieldAction:
     cost: 1
     prepareTime: 2
@@ -945,6 +949,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3136c5e15e22f6c47934ce295146d39f, type: 3}
+--- !u!4 &2081467017098138879 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1880871059245533522, guid: 3136c5e15e22f6c47934ce295146d39f,
+    type: 3}
+  m_PrefabInstance: {fileID: 502408068906556845}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8513249750683047548 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8132879638651358161, guid: 3136c5e15e22f6c47934ce295146d39f,

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -12,9 +13,17 @@ public class Robot : MonoBehaviour
 
     public int health = 4;
     public int chargePerBattery = 4;
-    public int laserCost = 4;
-    public float laserCooldown = 5;
     public Robot target;
+    [BoxGroup("Laser")]
+    public int laserCost = 4;
+    [BoxGroup("Laser")]
+    public float laserCooldown = 5;
+    [BoxGroup("Laser")]
+    public Transform laserEffectSocket;
+    [BoxGroup("Laser")]
+    public GameObject laserEffectPrefab;
+    [BoxGroup("Laser")]
+    public float laserEffectDestroyDelay = 2;
 
     public RobotAction shieldAction;
     public RobotAction punchAction;
@@ -103,6 +112,15 @@ public class Robot : MonoBehaviour
         charges -= laserCost;
         laserUseTime = Time.time + laserCooldown;
         target.ReceiveLaser();
+
+        StartCoroutine(DestroyLaser());
+
+        IEnumerator DestroyLaser()
+        {
+            var laser = Instantiate(laserEffectPrefab, laserEffectSocket);
+            yield return new WaitForSeconds(laserEffectDestroyDelay);
+            Destroy(laser.gameObject);
+        }
     }
 
     protected virtual void HandleOnActivatePunch()

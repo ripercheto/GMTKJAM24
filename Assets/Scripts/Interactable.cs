@@ -1,4 +1,7 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -10,6 +13,27 @@ public abstract class Interactable : MonoBehaviour
         Axis
     }
 
+    IEnumerable AnimatorParameters
+    {
+        get
+        {
+            if (animator == null)
+            {
+                yield break;
+            }
+
+            for (var i = 0; i < animator.parameterCount; i++)
+            {
+                var param = animator.GetParameter(i);
+                yield return new ValueDropdownItem<int>(param.name, param.nameHash);
+            }
+        }
+    }
+
+    [BoxGroup("Interaction")]
+    public Animator animator;
+    [BoxGroup("Interaction"), ValueDropdown(nameof(AnimatorParameters))]
+    public int animatorParameter;
     [BoxGroup("Interaction")]
     public float interactionDelay = 0.5f;
     [BoxGroup("Interaction")]
@@ -53,6 +77,10 @@ public abstract class Interactable : MonoBehaviour
         interactionTime = Time.time + interactionDelay;
         var player = other.GetComponent<Player>();
         HandleInteraction(player);
+        if (animator != null)
+        {
+            animator.SetTrigger(animatorParameter);
+        }
     }
 
     protected abstract void HandleInteraction(Player player);

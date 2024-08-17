@@ -4,19 +4,20 @@ using UnityEngine;
 
 public class WalkablePolygon : MonoBehaviour
 {
-    public List<Vector2> polygonPoints = new List<Vector2>();
-    
+    public List<Vector2> polygonPoints = new();
+
     private void OnDrawGizmos()
     {
         Gizmos.matrix = Matrix4x4.TRS(transform.position, transform.rotation, Vector3.one);
-        if (polygonPoints.Count > 2)
+        if (polygonPoints.Count <= 2)
         {
-            for (int i = 0; i < polygonPoints.Count; i++)
-            {
-                Vector3 start = new Vector3(polygonPoints[i].x, 0, polygonPoints[i].y);
-                Vector3 end = new Vector3(polygonPoints[(i + 1) % polygonPoints.Count].x, 0, polygonPoints[(i + 1) % polygonPoints.Count].y);
-                Gizmos.DrawLine(start, end);
-            }
+            return;
+        }
+        for (int i = 0; i < polygonPoints.Count; i++)
+        {
+            var start = new Vector3(polygonPoints[i].x, 0, polygonPoints[i].y);
+            var end = new Vector3(polygonPoints[(i + 1) % polygonPoints.Count].x, 0, polygonPoints[(i + 1) % polygonPoints.Count].y);
+            Gizmos.DrawLine(start, end);
         }
     }
 
@@ -24,24 +25,25 @@ public class WalkablePolygon : MonoBehaviour
     {
         if (polygonPoints.Count < 3) return;
 
-        Vector2 position2D = new Vector2(newPosition.x, newPosition.z);
+        var position2D = new Vector2(newPosition.x, newPosition.z);
 
-        if (!IsPointInPolygon(position2D))
+        if (IsPointInPolygon(position2D))
         {
-            Vector2 closestPoint = ClosestPointOnPolygon(position2D);
-            newPosition = new Vector3(closestPoint.x, newPosition.y, closestPoint.y);
-            
-            // Calculate slide velocity
-            Vector2 normal = (position2D - closestPoint).normalized;
-            Vector2 velocity2D = new Vector2(velocity.x, velocity.z);
-            Vector2 slideVelocity = Vector2.Dot(velocity2D, normal) * normal;
-            velocity = new Vector3(velocity.x - slideVelocity.x, velocity.y, velocity.z - slideVelocity.y);
+            return;
         }
+        var closestPoint = ClosestPointOnPolygon(position2D);
+        newPosition = new Vector3(closestPoint.x, newPosition.y, closestPoint.y);
+
+        // Calculate slide velocity
+        var normal = (position2D - closestPoint).normalized;
+        var velocity2D = new Vector2(velocity.x, velocity.z);
+        var slideVelocity = Vector2.Dot(velocity2D, normal) * normal;
+        velocity = new Vector3(velocity.x - slideVelocity.x, velocity.y, velocity.z - slideVelocity.y);
     }
 
     private bool IsPointInPolygon(Vector2 point)
     {
-        bool inside = false;
+        var inside = false;
         for (int i = 0, j = polygonPoints.Count - 1; i < polygonPoints.Count; j = i++)
         {
             if (((polygonPoints[i].y > point.y) != (polygonPoints[j].y > point.y)) &&
@@ -55,15 +57,15 @@ public class WalkablePolygon : MonoBehaviour
 
     private Vector2 ClosestPointOnPolygon(Vector2 point)
     {
-        float minDistance = float.MaxValue;
-        Vector2 closestPoint = Vector2.zero;
+        var minDistance = float.MaxValue;
+        var closestPoint = Vector2.zero;
 
         for (int i = 0; i < polygonPoints.Count; i++)
         {
-            Vector2 start = polygonPoints[i];
-            Vector2 end = polygonPoints[(i + 1) % polygonPoints.Count];
-            Vector2 closest = ClosestPointOnLineSegment(point, start, end);
-            float distance = Vector2.Distance(point, closest);
+            var start = polygonPoints[i];
+            var end = polygonPoints[(i + 1) % polygonPoints.Count];
+            var closest = ClosestPointOnLineSegment(point, start, end);
+            var distance = Vector2.Distance(point, closest);
 
             if (distance < minDistance)
             {
@@ -77,26 +79,25 @@ public class WalkablePolygon : MonoBehaviour
 
     private Vector2 ClosestPointOnLineSegment(Vector2 point, Vector2 start, Vector2 end)
     {
-        Vector2 line = end - start;
-        float lineLength = line.magnitude;
+        var line = end - start;
+        var lineLength = line.magnitude;
         line /= lineLength;
 
-        float projectLength = Mathf.Clamp(Vector2.Dot(point - start, line), 0f, lineLength);
+        var projectLength = Mathf.Clamp(Vector2.Dot(point - start, line), 0f, lineLength);
         return start + line * projectLength;
     }
 
     [Button]
     private void CenterPolygon()
     {
-        Vector2 centroid = CalculateCentroid(polygonPoints);
+        var centroid = CalculateCentroid(polygonPoints);
         CenterPointsAroundOrigin(centroid);
     }
 
     Vector2 CalculateCentroid(List<Vector2> points)
     {
-        Vector2 centroid = Vector2.zero;
-
-        foreach (Vector2 point in points)
+        var centroid = Vector2.zero;
+        foreach (var point in points)
         {
             centroid += point;
         }
@@ -107,7 +108,7 @@ public class WalkablePolygon : MonoBehaviour
 
     void CenterPointsAroundOrigin(Vector2 centroid)
     {
-        for (int i = 0; i < polygonPoints.Count; i++)
+        for (var i = 0; i < polygonPoints.Count; i++)
         {
             polygonPoints[i] -= centroid;
         }

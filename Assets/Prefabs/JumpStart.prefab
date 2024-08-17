@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 6018588062423511640}
   - component: {fileID: 1180263117368195660}
   - component: {fileID: 2878849532798521791}
+  - component: {fileID: 6935008125670835902}
   m_Layer: 0
   m_Name: JumpStart
   m_TagString: Untagged
@@ -129,7 +130,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47812343a32fb374d8cfab4d5487e461, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  area: {fileID: 0}
+  interactionDelay: 0.5
+  needsInput: 1
   target: {fileID: 0}
   duration: 0.5
   jumpHeightCurve:
@@ -187,3 +189,16 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!114 &6935008125670835902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1946000396555032496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e64c52aab95f91845a4a08a7fdd3606e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  area: {fileID: 0}

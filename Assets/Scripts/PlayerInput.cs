@@ -16,5 +16,5 @@ public static class PlayerInput
         }
     }
 
-    public static bool PressedAction => Input.GetButtonDown("Fire1");
+    public static bool PressingAction => Input.GetButton("Jump");
 }

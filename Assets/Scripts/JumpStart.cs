@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class JumpStart : JumpTarget
+public class JumpStart : Interactible
 {
     public JumpTarget target;
     public float duration = 0.5f;
@@ -9,30 +9,9 @@ public class JumpStart : JumpTarget
     public float height = 1f;
 
     private Coroutine coroutine;
-    private bool pressedJump;
-
-    private void Update()
-    {
-        pressedJump = PlayerInput.PressedAction;
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        if (!pressedJump)
-        {
-            return;
-        }
-        var player = other.GetComponent<Player>();
-        TryTriggerJump(player);
-    }
-
+    
     public void TryTriggerJump(Player player)
     {
-        if (coroutine != null)
-        {
-            return;
-        }
-
         if (player.isKinematic)
         {
             return;
@@ -43,6 +22,12 @@ public class JumpStart : JumpTarget
             return;
         }
         coroutine = StartCoroutine(JumpAnimation(player));
+    }
+    
+    protected override bool CanInteract => coroutine == null;
+    protected override void HandleInteraction(Player player)
+    {
+        TryTriggerJump(player);
     }
 
     private IEnumerator JumpAnimation(Player player)

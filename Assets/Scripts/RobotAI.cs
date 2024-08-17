@@ -74,7 +74,7 @@ public class RobotAI : MonoBehaviour
                 if (shouldLaser)
                 {
                     Debug.Log($"{enemyPowerTarget} Flow rolled to use laser");
-                    ai.robot.UseLaser();
+                    ai.robot.TryUseLaser();
                 }
                 else
                 {
@@ -111,7 +111,7 @@ public class RobotAI : MonoBehaviour
                         break;
                     case 2:
                         Debug.Log($"{enemyPowerTarget} Flow rolled to shoot laser");
-                        ai.robot.UseLaser();
+                        ai.robot.TryUseLaser();
                         break;
                 }
             }

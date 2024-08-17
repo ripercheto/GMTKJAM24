@@ -3,6 +3,14 @@ using System.Collections;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
+public enum RobotActionStateType
+{
+    Idle,
+    Preparing,
+    Prepared,
+    Active
+}
+
 [Serializable]
 public class RobotAction
 {
@@ -12,7 +20,7 @@ public class RobotAction
     public Robot.PowerDirectionType direction = Robot.PowerDirectionType.Left;
 
     [ShowInInspector, ReadOnly]
-    public Robot.RobotActionStateType State { get; private set; }
+    public RobotActionStateType State { get; private set; }
 
     private Robot robot;
     private Action activeAction;
@@ -26,13 +34,13 @@ public class RobotAction
 
     public void StartPrepare()
     {
-        State = Robot.RobotActionStateType.Preparing;
+        State = RobotActionStateType.Preparing;
         robot.StartCoroutine(HandlePreparing());
 
         IEnumerator HandlePreparing()
         {
             yield return new WaitForSeconds(prepareTime);
-            State = Robot.RobotActionStateType.Prepared;
+            State = RobotActionStateType.Prepared;
             TryActivateState();
         }
     }
@@ -43,7 +51,7 @@ public class RobotAction
         {
             return;
         }
-        if (State != Robot.RobotActionStateType.Prepared)
+        if (State != RobotActionStateType.Prepared)
         {
             return;
         }
@@ -52,7 +60,7 @@ public class RobotAction
             return;
         }
 
-        State = Robot.RobotActionStateType.Active;
+        State = RobotActionStateType.Active;
         robot.charges -= cost;
         activeAction?.Invoke();
 
@@ -61,7 +69,7 @@ public class RobotAction
         IEnumerator HandleCooldown()
         {
             yield return new WaitForSeconds(activeTime);
-            State = Robot.RobotActionStateType.Idle;
+            State = RobotActionStateType.Idle;
             activeCoroutine = null;
         }
     }
@@ -73,12 +81,12 @@ public class RobotAction
             return;
         }
 
-        if (State != Robot.RobotActionStateType.Active)
+        if (State != RobotActionStateType.Active)
         {
             return;
         }
 
-        State = Robot.RobotActionStateType.Idle;
+        State = RobotActionStateType.Idle;
         if (activeCoroutine == null)
         {
             return;

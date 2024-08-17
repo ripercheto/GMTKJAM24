@@ -10,17 +10,10 @@ public class Robot : MonoBehaviour
         Right
     }
 
-    public enum RobotActionStateType
-    {
-        Idle,
-        Preparing,
-        Prepared,
-        Active
-    }
-
     public int health = 4;
     public int chargePerBattery = 4;
-
+    public int laserCost = 4;
+    public float laserCooldown = 5;
     public Robot target;
 
     public RobotAction shieldAction;
@@ -30,6 +23,26 @@ public class Robot : MonoBehaviour
     public int charges;
     [ReadOnly]
     public PowerDirectionType powerDirectionType;
+
+    public bool CanUseLaser
+    {
+        get
+        {
+            if (charges < laserCost)
+            {
+                return false;
+            }
+
+            if (laserUseTime < Time.time)
+            {
+                return false;
+            }
+
+            return true;
+        }
+    }
+
+    private float laserUseTime;
 
     private void Awake()
     {
@@ -43,8 +56,7 @@ public class Robot : MonoBehaviour
         shieldAction.TryActivateState();
         punchAction.TryActivateState();
     }
-
-    [Button]
+    
     public virtual void ReceivePunch()
     {
         if (shieldAction.State == RobotActionStateType.Active)
@@ -54,9 +66,13 @@ public class Robot : MonoBehaviour
         }
         else
         {
-            health--;
-            Debug.Log($"{name} took damage. Health: {health}");
+            TakeDamage();
         }
+    }
+
+    public virtual void ReceiveLaser()
+    {
+        TakeDamage();
     }
 
     public void CyclePowerDirection()
@@ -77,8 +93,16 @@ public class Robot : MonoBehaviour
         shieldAction.StartPrepare();
     }
 
-    public void UseLaser()
+    public void TryUseLaser()
     {
+        if (!CanUseLaser)
+        {
+            return;
+        }
+
+        charges -= laserCost;
+        laserUseTime = Time.time + laserCooldown;
+        target.ReceiveLaser();
     }
 
     protected virtual void HandleOnActivatePunch()
@@ -88,7 +112,13 @@ public class Robot : MonoBehaviour
 
     protected virtual void HandleOnBlockPunch()
     {
+        //TODO BREAK SHIELD
+    }
 
+    private void TakeDamage()
+    {
+        health--;
+        Debug.Log($"{name} took damage. Health: {health}");
     }
 
     public static PowerDirectionType Cycle(PowerDirectionType type)

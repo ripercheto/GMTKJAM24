@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class BaseRobotInteractable : Interactable
+public abstract class RobotInteractable : Interactable
 {
     public PlayerRobot robot;
 

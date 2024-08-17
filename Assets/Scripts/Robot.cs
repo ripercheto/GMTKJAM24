@@ -6,90 +6,6 @@ using UnityEngine;
 
 public class Robot : MonoBehaviour
 {
-    [Serializable]
-    public class RobotAction
-    {
-        public int cost = 1;
-        public float prepareTime = 2;
-        public float activeTime = 2;
-        public PowerDirectionType direction = PowerDirectionType.Left;
-
-        [ShowInInspector, ReadOnly]
-        public RobotActionStateType State { get; private set; }
-
-        private Robot robot;
-        private Action activeAction;
-        private Coroutine activeCoroutine;
-
-        public void Initialize(Robot parent, Action actionOnActive)
-        {
-            robot = parent;
-            activeAction = actionOnActive;
-        }
-
-        public void StartPrepare()
-        {
-            State = RobotActionStateType.Preparing;
-            robot.StartCoroutine(HandlePreparing());
-
-            IEnumerator HandlePreparing()
-            {
-                yield return new WaitForSeconds(prepareTime);
-                State = RobotActionStateType.Prepared;
-                TryActivateState();
-            }
-        }
-
-        public void TryActivateState()
-        {
-            if (robot.charges < cost)
-            {
-                return;
-            }
-            if (State != RobotActionStateType.Prepared)
-            {
-                return;
-            }
-            if (robot.powerDirectionType != direction)
-            {
-                return;
-            }
-
-            State = RobotActionStateType.Active;
-            robot.charges -= cost;
-            activeAction?.Invoke();
-
-            activeCoroutine = robot.StartCoroutine(HandleCooldown());
-
-            IEnumerator HandleCooldown()
-            {
-                yield return new WaitForSeconds(activeTime);
-                State = RobotActionStateType.Idle;
-                activeCoroutine = null;
-            }
-        }
-
-        public void TryCancelActiveState()
-        {
-            if (robot.powerDirectionType == direction)
-            {
-                return;
-            }
-
-            if (State != RobotActionStateType.Active)
-            {
-                return;
-            }
-
-            State = RobotActionStateType.Idle;
-            if (activeCoroutine == null)
-            {
-                return;
-            }
-            robot.StopCoroutine(activeCoroutine);
-        }
-    }
-
     public enum PowerDirectionType
     {
         Left,
@@ -107,15 +23,16 @@ public class Robot : MonoBehaviour
     public int chargePerBattery = 4;
 
     public Player player;
-    public WalkablePolygon leftArmArea, rightArmArea, leftRespawnArea, rightRespawnArea;
+    public List<WalkablePolygon> leftArmAreas, rightArmAreas;
+    public WalkablePolygon leftRespawnArea, rightRespawnArea;
 
     public RobotAction shieldAction;
     public RobotAction punchAction;
 
-    [ShowInInspector, ReadOnly]
-    private int charges;
-    [ShowInInspector, ReadOnly]
-    private PowerDirectionType powerDirectionType;
+    [ReadOnly]
+    public int charges;
+    [ReadOnly]
+    public PowerDirectionType powerDirectionType;
 
     private void Awake()
     {
@@ -165,7 +82,7 @@ public class Robot : MonoBehaviour
         {
             return;
         }
-        if (player.walkableArea != rightArmArea)
+        if (rightArmAreas.Contains(player.walkableArea))
         {
             return;
         }
@@ -178,7 +95,7 @@ public class Robot : MonoBehaviour
         {
             return;
         }
-        if (player.walkableArea != leftArmArea)
+        if (leftArmAreas.Contains(player.walkableArea))
         {
             return;
         }

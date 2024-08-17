@@ -34,17 +34,25 @@ public class JumpStartInteractable : Interactable
     private IEnumerator JumpAnimation(Player player)
     {
         player.SetKinematic(true);
-        var playerOffset = player.transform.position - transform.position;
-        player.transform.parent = null;
+
+        var startTransform = transform;
+        var targetTransform = target.transform;
+        var playerTransform = player.transform;
+
+        playerTransform.parent = null;
+        var playerOffset = playerTransform.position - startTransform.position;
+        var up = (startTransform.up + targetTransform.up) * 0.5f;
+
         var t = 0f;
         while (t < 1f)
         {
             t += Time.deltaTime / duration;
-            var startPos = transform.position + playerOffset;
-            var targetPos = target.transform.position;
+            var startPos = startTransform.position + playerOffset;
+            var targetPos = targetTransform.position;
             var newPos = Vector3.Lerp(startPos, targetPos, t);
-            var yAddition = transform.up * (jumpHeightCurve.Evaluate(t) * height);
-            player.transform.position = newPos + yAddition;
+            var rot = Quaternion.Lerp(startTransform.rotation, targetTransform.rotation, t);
+            var yAddition = up * (jumpHeightCurve.Evaluate(t) * height);
+            playerTransform.SetPositionAndRotation(newPos + yAddition, rot);
             yield return null;
         }
         player.SetKinematic(false);

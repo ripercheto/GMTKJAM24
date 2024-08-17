@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -6,10 +7,11 @@ public class Player : MonoBehaviour
 {
     public float maxSpeed = 10f;
     public float maxAcceleration = 10f;
+    public float respawnDelay = 3;
     public Vector3 ragDollImpulse;
     public Transform batterySocket;
     public Rigidbody body;
-    
+
     public bool isKinematic;
     public WalkablePolygon walkableArea;
 
@@ -49,12 +51,22 @@ public class Player : MonoBehaviour
         return battery;
     }
 
-    [Button]
-    public void RagDollOff()
+    public void MakeFallOff(WalkablePolygon respawnArea)
     {
         isKinematic = true;
         body.isKinematic = false;
+        transform.parent = null;
         body.AddForce(ragDollImpulse, ForceMode.Impulse);
+
+        StartCoroutine(Respawn());
+
+        IEnumerator Respawn()
+        {
+            yield return new WaitForSeconds(respawnDelay);
+            body.isKinematic = true;
+            isKinematic = false;
+            SetWalkableArea(respawnArea);
+        }
     }
 
     void Update()

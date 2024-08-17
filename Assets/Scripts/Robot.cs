@@ -105,6 +105,9 @@ public class Robot : MonoBehaviour
 
     public int chargePerBattery = 4;
 
+    public Player player;
+    public WalkablePolygon leftArmArea, rightArmArea, leftRespawnArea, rightRespawnArea;
+
     public RobotAction shieldAction;
     public RobotAction punchAction;
 
@@ -145,5 +148,14 @@ public class Robot : MonoBehaviour
 
     private void HandleOnPunch()
     {
+        if (player.isKinematic)
+        {
+            return;
+        }
+        if (player.walkableArea != rightArmArea)
+        {
+            return;
+        }
+        player.MakeFallOff(rightRespawnArea);
     }
 }

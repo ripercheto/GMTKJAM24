@@ -39,6 +39,7 @@ public class RobotAction
 
     public void StartPrepare()
     {
+        prepareAction?.Invoke();
         State = RobotActionStateType.Preparing;
         prepareCoroutine = robot.StartCoroutine(HandlePreparing());
 

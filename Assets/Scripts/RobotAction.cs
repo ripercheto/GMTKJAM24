@@ -24,13 +24,15 @@ public class RobotAction
 
     private Robot robot;
     private Action activeAction;
+    private Action idleAction;
     private Coroutine prepareCoroutine;
     private Coroutine activeCoroutine;
 
-    public void Initialize(Robot parent, Action actionOnActive)
+    public void Initialize(Robot parent, Action actionOnActive = null, Action actionOnIdle = null)
     {
         robot = parent;
         activeAction = actionOnActive;
+        idleAction = actionOnIdle;
     }
 
     public void StartPrepare()
@@ -72,6 +74,7 @@ public class RobotAction
         {
             yield return new WaitForSeconds(activeTime);
             State = RobotActionStateType.Idle;
+            idleAction?.Invoke();
             activeCoroutine = null;
         }
     }
@@ -89,6 +92,7 @@ public class RobotAction
         }
 
         State = RobotActionStateType.Idle;
+        idleAction?.Invoke();
         if (activeCoroutine == null)
         {
             return;
@@ -107,5 +111,6 @@ public class RobotAction
             robot.StopCoroutine(activeCoroutine);
         }
         State = RobotActionStateType.Idle;
+        idleAction?.Invoke();
     }
 }

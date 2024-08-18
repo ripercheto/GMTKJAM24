@@ -26,7 +26,7 @@ public class Robot : MonoBehaviour
     public float laserEffectDestroyDelay = 2;
     [BoxGroup("Laser")]
     public ParticleSystem[] laserCooldownEffect;
-
+    public AnimatorHandler shieldAnimatorHandler;
     public RobotAction shieldAction;
     public RobotAction punchAction;
 
@@ -57,8 +57,18 @@ public class Robot : MonoBehaviour
 
     private void Awake()
     {
-        shieldAction.Initialize(this, null);
+        shieldAction.Initialize(this, HandleShieldActive, HandleShieldIdle);
         punchAction.Initialize(this, HandleOnActivatePunch);
+    }
+
+    private void HandleShieldActive()
+    {
+        shieldAnimatorHandler.SetBool(true);
+    }
+
+    private void HandleShieldIdle()
+    {
+        shieldAnimatorHandler.SetBool(false);
     }
 
     public void ReceiveBattery()

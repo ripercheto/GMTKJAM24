@@ -63,3 +63,18 @@ MonoBehaviour:
     mixer: {fileID: 0}
     sounds:
     - {fileID: 8300000, guid: f0c7ba58be0a2e546bd02d66df2cc53d, type: 3}
+  - name: GrabbingBattery
+    volume: 1
+    mixer: {fileID: 0}
+    sounds:
+    - {fileID: 8300000, guid: c181dd4d2eb50d040b893c1fb0d5c712, type: 3}
+  - name: DepositingBattery
+    volume: 1
+    mixer: {fileID: 0}
+    sounds:
+    - {fileID: 8300000, guid: 2ac91425a457123438257461156e9358, type: 3}
+  - name: PunchHittingShield
+    volume: 1
+    mixer: {fileID: 0}
+    sounds:
+    - {fileID: 8300000, guid: aecde3c4da46a0845a33a3eff865f6e2, type: 3}

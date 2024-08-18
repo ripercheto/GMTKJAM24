@@ -48,7 +48,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1098268654424199304}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -129,8 +129,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5490d5228aa0a744ba54ce383f6c4412, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
-  animatorParameter: 0
+  animatorHandler:
+    animator: {fileID: 0}
+    animatorParameter: 0
   interactionDelay: 0.5
   needsInput: 1
   textToShow: Interact to prepare punch

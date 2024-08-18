@@ -36,20 +36,6 @@ public class PlayerRobot : Robot
         player.MakeFallOff(rightRespawnArea);
     }
 
-    protected override void HandleOnBlockPunch()
-    {
-        base.HandleOnBlockPunch();
-        if (player.isKinematic)
-        {
-            return;
-        }
-        if (!leftArmAreas.Contains(player.walkableArea))
-        {
-            return;
-        }
-        player.MakeFallOff(leftRespawnArea);
-    }
-
     public override void SetCharges(int newCharges)
     {
         base.SetCharges(newCharges);

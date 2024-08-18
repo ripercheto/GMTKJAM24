@@ -42,7 +42,7 @@ MonoBehaviour:
     volume: 1
     mixer: {fileID: 0}
     sounds:
-    - {fileID: 8300000, guid: fdd4c68feed32334f9a7d02041d23674, type: 3}
+    - {fileID: 8300000, guid: f0c7ba58be0a2e546bd02d66df2cc53d, type: 3}
   - name: ShieldActivating
     volume: 1
     mixer: {fileID: 0}

@@ -241,7 +241,7 @@ public class Robot : MonoBehaviour
         IEnumerator Blink()
         {
             playerMaterial.SetKeyword(playerEmissionKeyword, true);
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.5f);
             playerMaterial.SetKeyword(playerEmissionKeyword, false);
         }
     }

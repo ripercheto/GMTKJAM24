@@ -120,8 +120,8 @@ public class Robot : MonoBehaviour
     {
         if (shieldAction.State == RobotActionStateType.Active)
         {
-            HandleOnBlockPunch();
-            shieldAction.TryCancelActiveState();
+            SoundManager.PlaySound(SoundType.PunchHittingShield);
+            shieldAction.ForceCancel();
         }
         else
         {
@@ -132,7 +132,16 @@ public class Robot : MonoBehaviour
 
     public virtual void ReceiveLaser()
     {
-        TakeDamage();
+        if (shieldAction.State == RobotActionStateType.Active)
+        {
+            SoundManager.PlaySound(SoundType.PunchHittingShield);
+            shieldAction.ForceCancel();
+            return;
+        }
+        else
+        {
+            TakeDamage();
+        }
     }
 
     public void CyclePowerDirection()
@@ -208,12 +217,6 @@ public class Robot : MonoBehaviour
         punchInt.SetInt(2);
         SoundManager.PlaySound(SoundType.FistBeingLaunched);
         target.ReceivePunch();
-    }
-
-    protected virtual void HandleOnBlockPunch()
-    {
-        SoundManager.PlaySound(SoundType.PunchHittingShield);
-        shieldAction.ForceCancel();
     }
 
     public virtual void SetCharges(int newCharges)

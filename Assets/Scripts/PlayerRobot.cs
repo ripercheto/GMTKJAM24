@@ -14,12 +14,12 @@ public class PlayerRobot : Robot
 
     public override void ReceivePunch()
     {
-        base.ReceivePunch();
         if (shieldAction.State != RobotActionStateType.Active)
         {
             var leftSide = player.transform.position.x < 0;
             player.MakeFallOff(leftSide ? leftRespawnArea : rightRespawnArea);
         }
+        base.ReceivePunch();
     }
 
     protected override void HandleOnActivatePunch()

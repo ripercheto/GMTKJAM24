@@ -37,10 +37,13 @@ public class Robot : MonoBehaviour
     [BoxGroup("Punch")]
     public RobotAction punchAction;
 
-    [BoxGroup("Punch")]
+    public Material activePowerMaterial, noPowerMaterial;
+    public MeshRenderer[] chargesIndicator;
+
+    [BoxGroup("Power")]
     public Material playerMaterial;
     [BoxGroup("Power")]
-    public Material leftMaterial, rightMaterial;
+    public Material leftMaterial, rightMaterial, middlePowerMaterial;
     [BoxGroup("Power"), ColorUsage(false, true)]
     public Color powerActiveColor, powerInactiveColor, powerWrongSideColor;
 
@@ -76,7 +79,7 @@ public class Robot : MonoBehaviour
         playerEmissionKeyword = new LocalKeyword(playerMaterial.shader, "_EMISSION");
         shieldAction.Initialize(this, HandleShieldActive, HandleShieldIdle);
         punchAction.Initialize(this, HandleOnActivatePunch);
-        UpdatePowerMaterial();
+        SetCharges(0);
     }
 
     private void HandleShieldActive()
@@ -182,6 +185,11 @@ public class Robot : MonoBehaviour
     public virtual void SetCharges(int newCharges)
     {
         charges = newCharges;
+        for (var i = 0; i < chargesIndicator.Length; i++)
+        {
+            var active = i < charges;
+            chargesIndicator[i].material = active ? activePowerMaterial : noPowerMaterial;
+        }
         UpdatePowerMaterial();
     }
 
@@ -203,13 +211,12 @@ public class Robot : MonoBehaviour
         }
     }
 
-    public static PowerDirectionType Cycle(PowerDirectionType type)
-    {
-        return (PowerDirectionType)(((int)type + 1) % Enum.GetValues(typeof(PowerDirectionType)).Length);
-    }
-
     private void UpdatePowerMaterial()
     {
+        if (middlePowerMaterial == null)
+        {
+            return;
+        }
         if (leftMaterial == null)
         {
             return;
@@ -218,6 +225,7 @@ public class Robot : MonoBehaviour
         {
             return;
         }
+        middlePowerMaterial.SetColor(Color1, charges < laserCost ? powerInactiveColor : powerActiveColor);
         switch (powerDirectionType)
         {
             case PowerDirectionType.Left:
@@ -231,5 +239,10 @@ public class Robot : MonoBehaviour
             default:
                 throw new ArgumentOutOfRangeException();
         }
+    }
+
+    public static PowerDirectionType Cycle(PowerDirectionType type)
+    {
+        return (PowerDirectionType)(((int)type + 1) % Enum.GetValues(typeof(PowerDirectionType)).Length);
     }
 }

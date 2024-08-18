@@ -158,7 +158,6 @@ public class Robot : MonoBehaviour
         powerDirectionType = Cycle(powerDirectionType);
         UpdatePowerMaterial();
         shieldAction.TryActivateState();
-        shieldAction.TryCancelActiveState();
         punchAction.TryActivateState();
     }
 

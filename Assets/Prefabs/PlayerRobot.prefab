@@ -596,7 +596,7 @@ MonoBehaviour:
   chargePerBattery: 4
   target: {fileID: 0}
   laserCost: 4
-  laserCooldown: 5
+  laserCooldown: 30
   laserEffectSocket: {fileID: 6834408129470250001}
   laserEffectPrefab: {fileID: 643361954127317881, guid: cf38dba991be90442b567d1506e76f17,
     type: 3}
@@ -609,12 +609,12 @@ MonoBehaviour:
     animatorParameter: -1971915048
   shieldAction:
     cost: 1
-    prepareTime: 2
-    activeTime: 2
+    prepareTime: 0
+    activeTime: 15
     direction: 0
   punchAction:
-    cost: 1
-    prepareTime: 2
+    cost: 2
+    prepareTime: 0
     activeTime: 0.2
     direction: 1
   activePowerMaterial: {fileID: 2100000, guid: d48576f2ca6b16842939f6578566237d, type: 2}

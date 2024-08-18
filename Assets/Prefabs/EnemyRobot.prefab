@@ -51,40 +51,40 @@ MonoBehaviour:
   shieldFlow:
     enemyPowerTarget: 0
     enemyPowerOnTargetSideDelay:
-      min: 5
-      max: 10
+      min: 7
+      max: 12
     targetSideChanceToLaser: 0.2
     targetSideChanceToAction: 0.8
     enemyPowerOnOtherSideDelay:
-      min: 5
-      max: 10
+      min: 7
+      max: 12
     otherSideChanceToPrepare: 0.4
     otherSideChanceToPrepareSwitchPowerDelay:
-      min: 5
-      max: 10
+      min: 7
+      max: 12
     otherSideChanceToSwitchPower: 0.4
     otherSideChanceToSwitchPowerDelay:
-      min: 5
-      max: 10
+      min: 7
+      max: 12
     otherSideChanceToLaser: 0.2
   punchFlow:
     enemyPowerTarget: 1
     enemyPowerOnTargetSideDelay:
-      min: 5
-      max: 10
+      min: 7
+      max: 12
     targetSideChanceToLaser: 0.2
     targetSideChanceToAction: 0.8
     enemyPowerOnOtherSideDelay:
-      min: 5
-      max: 10
+      min: 7
+      max: 12
     otherSideChanceToPrepare: 0.4
     otherSideChanceToPrepareSwitchPowerDelay:
-      min: 5
-      max: 10
+      min: 7
+      max: 12
     otherSideChanceToSwitchPower: 0.4
     otherSideChanceToSwitchPowerDelay:
-      min: 5
-      max: 10
+      min: 7
+      max: 12
     otherSideChanceToLaser: 0.2
   playerLeftChanceToLeft: 0.3
   playerLeftChanceToRight: 0.7
@@ -106,7 +106,7 @@ MonoBehaviour:
   chargePerBattery: 4
   target: {fileID: 0}
   laserCost: 4
-  laserCooldown: 5
+  laserCooldown: 10
   laserEffectSocket: {fileID: 7196346823688624179}
   laserEffectPrefab: {fileID: 643361954127317881, guid: cf38dba991be90442b567d1506e76f17,
     type: 3}

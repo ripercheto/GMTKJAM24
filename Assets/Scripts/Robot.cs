@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using Sirenix.OdinInspector;
 using SmallHedge.SoundManager;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -21,6 +22,10 @@ public class Robot : MonoBehaviour
 
     public Healthbar healthbar;
 
+    [BoxGroup("Animation")]
+    public Animator animator;
+    [BoxGroup("Animation")]
+    public RuntimeAnimatorController animatorController;
     [BoxGroup("Animation")]
     public AnimatorHandler damageTrigger;
     [BoxGroup("Animation")]
@@ -88,6 +93,7 @@ public class Robot : MonoBehaviour
 
     private void Awake()
     {
+        animator.runtimeAnimatorController = animatorController;
         healthbar.Initialize(health);
         playerEmissionKeyword = new LocalKeyword(playerMaterial.shader, "_EMISSION");
         shieldAction.Initialize(this, HandleShieldActive, HandleShieldIdle, HandlePrepareShield);

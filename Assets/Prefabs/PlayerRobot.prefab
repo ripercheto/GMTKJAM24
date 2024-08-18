@@ -595,6 +595,10 @@ MonoBehaviour:
   health: 4
   chargePerBattery: 4
   target: {fileID: 0}
+  winOnDeath: 0
+  healthbar: {fileID: 0}
+  animator: {fileID: 7330170244105140193}
+  animatorController: {fileID: 9100000, guid: ec26469d945da964b9299fd1d2f833e2, type: 2}
   damageTrigger:
     animator: {fileID: 7330170244105140193}
     animatorParameter: 375673178

@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using Sirenix.OdinInspector;
 using SmallHedge.SoundManager;
-using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.Rendering;
 

@@ -25,14 +25,16 @@ public class RobotAction
     private Robot robot;
     private Action activeAction;
     private Action idleAction;
+    private Action prepareAction;
     private Coroutine prepareCoroutine;
     private Coroutine activeCoroutine;
 
-    public void Initialize(Robot parent, Action actionOnActive = null, Action actionOnIdle = null)
+    public void Initialize(Robot parent, Action actionOnActive, Action actionOnIdle, Action actionOnPrepare)
     {
         robot = parent;
         activeAction = actionOnActive;
         idleAction = actionOnIdle;
+        prepareAction = actionOnPrepare;
     }
 
     public void StartPrepare()

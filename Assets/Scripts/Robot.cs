@@ -23,7 +23,7 @@ public class Robot : MonoBehaviour
     public AnimatorHandler punchInt;
     [BoxGroup("Animation")]
     public AnimatorHandler shieldInt;
-    
+
     [BoxGroup("Laser")]
     public int laserCost = 4;
     [BoxGroup("Laser")]
@@ -85,8 +85,8 @@ public class Robot : MonoBehaviour
     private void Awake()
     {
         playerEmissionKeyword = new LocalKeyword(playerMaterial.shader, "_EMISSION");
-        shieldAction.Initialize(this, HandleShieldActive, HandleShieldIdle);
-        punchAction.Initialize(this, HandleOnActivatePunch, HandlePunchIdle);
+        shieldAction.Initialize(this, HandleShieldActive, HandleShieldIdle, HandlePrepareShield);
+        punchAction.Initialize(this, HandleOnActivatePunch, HandlePunchIdle, HandlePreparePunch);
         SetCharges(0);
     }
 
@@ -146,15 +146,23 @@ public class Robot : MonoBehaviour
 
     public void PreparePunch()
     {
-        SoundManager.PlaySound(SoundType.PunchStance);
         punchAction.StartPrepare();
-        punchInt.SetInt(1);
     }
 
     public void PrepareShield()
     {
-        SoundManager.PlaySound(SoundType.ShieldStance);
         shieldAction.StartPrepare();
+    }
+
+    private void HandlePreparePunch()
+    {
+        SoundManager.PlaySound(SoundType.PunchStance);
+        punchInt.SetInt(1);
+    }
+
+    private void HandlePrepareShield()
+    {
+        SoundManager.PlaySound(SoundType.ShieldStance);
         shieldInt.SetInt(1);
     }
 

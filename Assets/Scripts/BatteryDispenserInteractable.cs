@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class BatteryDispenserInteractable : Interactable
 {
+    public Transform socket;
     public int maxCharges;
     public float rechargeDuration;
     public GameObject batteryPrefab;
@@ -9,9 +10,12 @@ public class BatteryDispenserInteractable : Interactable
     private int currentCharges;
     private float nextRechargeTime;
 
+    private GameObject battery;
+    
     private void Awake()
     {
         currentCharges = maxCharges;
+        battery = Instantiate(batteryPrefab, socket);
     }
 
     protected override bool CanInteract
@@ -39,6 +43,7 @@ public class BatteryDispenserInteractable : Interactable
             return;
         }
         AddCharge(1);
+        battery = Instantiate(batteryPrefab, socket);
     }
 
     protected override void HandleInteraction(Player player)
@@ -52,8 +57,8 @@ public class BatteryDispenserInteractable : Interactable
         {
             return;
         }
-        var battery = Instantiate(batteryPrefab);
         player.GiveBattery(battery);
+        battery = null;
         AddCharge(-1);
     }
 

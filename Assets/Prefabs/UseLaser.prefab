@@ -134,7 +134,7 @@ MonoBehaviour:
     animatorParameter: 0
   interactionDelay: 0.5
   needsInput: 1
-  textToShow: Interact to use laser
+  textToShow: Press space to use laser
   inputType: 0
   axisInputNeeded: {x: 0, y: 0}
   robot: {fileID: 0}

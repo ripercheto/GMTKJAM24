@@ -3,7 +3,17 @@ guid: c6d218e02158e434fbc0d87771b94387
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ColorLineL
+    second: {fileID: 2100000, guid: 3f8c361479f2c2b45be41432ee615bfe, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ColorLineR
+    second: {fileID: 2100000, guid: 43ed37a1c0cdf8f41a361a2c4cf9ebe8, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

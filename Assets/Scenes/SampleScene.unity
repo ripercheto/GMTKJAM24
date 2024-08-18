@@ -1661,11 +1661,6 @@ PrefabInstance:
       propertyPath: area
       value: 
       objectReference: {fileID: 1819612131}
-    - target: {fileID: 832010257489896215, guid: 6baaba261f4a1b84493d35ed838f5bdb,
-        type: 3}
-      propertyPath: area
-      value: 
-      objectReference: {fileID: 1819612131}
     - target: {fileID: 1293819457481998310, guid: 6baaba261f4a1b84493d35ed838f5bdb,
         type: 3}
       propertyPath: area
@@ -1694,7 +1689,7 @@ PrefabInstance:
     - target: {fileID: 2466171120452722624, guid: 6baaba261f4a1b84493d35ed838f5bdb,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -22.55
+      value: -12.93
       objectReference: {fileID: 0}
     - target: {fileID: 2466171120452722624, guid: 6baaba261f4a1b84493d35ed838f5bdb,
         type: 3}

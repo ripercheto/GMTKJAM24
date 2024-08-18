@@ -14,6 +14,7 @@ public class Robot : MonoBehaviour
     public int health = 4;
     public int chargePerBattery = 4;
     public Robot target;
+
     [BoxGroup("Laser")]
     public int laserCost = 4;
     [BoxGroup("Laser")]
@@ -26,9 +27,19 @@ public class Robot : MonoBehaviour
     public float laserEffectDestroyDelay = 2;
     [BoxGroup("Laser")]
     public ParticleSystem[] laserCooldownEffect;
+
+    [BoxGroup("Shield")]
     public AnimatorHandler shieldAnimatorHandler;
+    [BoxGroup("Shield")]
     public RobotAction shieldAction;
+
+    [BoxGroup("Punch")]
     public RobotAction punchAction;
+
+    [BoxGroup("Power")]
+    public Material leftMaterial, rightMaterial;
+    [BoxGroup("Power"), ColorUsage(false, true)]
+    public Color powerActiveColor, powerInactiveColor, powerWrongSideColor;
 
     [ReadOnly]
     public int charges;
@@ -54,11 +65,13 @@ public class Robot : MonoBehaviour
     }
 
     private float laserUseTime;
+    private static readonly int Color1 = Shader.PropertyToID("_EmissionColor");
 
     private void Awake()
     {
         shieldAction.Initialize(this, HandleShieldActive, HandleShieldIdle);
         punchAction.Initialize(this, HandleOnActivatePunch);
+        UpdatePowerMaterial();
     }
 
     private void HandleShieldActive()
@@ -99,6 +112,7 @@ public class Robot : MonoBehaviour
     public void CyclePowerDirection()
     {
         powerDirectionType = Cycle(powerDirectionType);
+        UpdatePowerMaterial();
         shieldAction.TryActivateState();
         shieldAction.TryCancelActiveState();
         punchAction.TryActivateState();
@@ -163,6 +177,7 @@ public class Robot : MonoBehaviour
     public virtual void SetCharges(int newCharges)
     {
         charges = newCharges;
+        UpdatePowerMaterial();
     }
 
     private void TakeDamage()
@@ -176,5 +191,30 @@ public class Robot : MonoBehaviour
     public static PowerDirectionType Cycle(PowerDirectionType type)
     {
         return (PowerDirectionType)(((int)type + 1) % Enum.GetValues(typeof(PowerDirectionType)).Length);
+    }
+
+    private void UpdatePowerMaterial()
+    {
+        if (leftMaterial == null)
+        {
+            return;
+        }
+        if (rightMaterial == null)
+        {
+            return;
+        }
+        switch (powerDirectionType)
+        {
+            case PowerDirectionType.Left:
+                leftMaterial.SetColor(Color1, charges == 0 ? powerInactiveColor : powerActiveColor);
+                rightMaterial.SetColor(Color1, powerWrongSideColor);
+                break;
+            case PowerDirectionType.Right:
+                rightMaterial.SetColor(Color1, charges == 0 ? powerInactiveColor : powerActiveColor);
+                leftMaterial.SetColor(Color1, powerWrongSideColor);
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
     }
 }

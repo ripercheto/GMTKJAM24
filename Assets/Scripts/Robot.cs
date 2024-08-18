@@ -17,6 +17,13 @@ public class Robot : MonoBehaviour
     public int chargePerBattery = 4;
     public Robot target;
 
+    [BoxGroup("Animation")]
+    public AnimatorHandler damageTrigger;
+    [BoxGroup("Animation")]
+    public AnimatorHandler punchInt;
+    [BoxGroup("Animation")]
+    public AnimatorHandler shieldInt;
+    
     [BoxGroup("Laser")]
     public int laserCost = 4;
     [BoxGroup("Laser")]
@@ -79,20 +86,27 @@ public class Robot : MonoBehaviour
     {
         playerEmissionKeyword = new LocalKeyword(playerMaterial.shader, "_EMISSION");
         shieldAction.Initialize(this, HandleShieldActive, HandleShieldIdle);
-        punchAction.Initialize(this, HandleOnActivatePunch);
+        punchAction.Initialize(this, HandleOnActivatePunch, HandlePunchIdle);
         SetCharges(0);
+    }
+
+    private void HandlePunchIdle()
+    {
+        punchInt.SetInt(0);
     }
 
     private void HandleShieldActive()
     {
         SoundManager.PlaySound(SoundType.ShieldActivating);
         shieldAnimatorHandler.SetBool(true);
+        shieldInt.SetInt(2);
     }
 
     private void HandleShieldIdle()
     {
         SoundManager.PlaySound(SoundType.ShieldDeactivating);
         shieldAnimatorHandler.SetBool(false);
+        shieldInt.SetInt(0);
     }
 
     public void ReceiveBattery()
@@ -106,7 +120,6 @@ public class Robot : MonoBehaviour
     {
         if (shieldAction.State == RobotActionStateType.Active)
         {
-            SoundManager.PlaySound(SoundType.PunchHittingShield);
             HandleOnBlockPunch();
             shieldAction.TryCancelActiveState();
         }
@@ -135,12 +148,14 @@ public class Robot : MonoBehaviour
     {
         SoundManager.PlaySound(SoundType.PunchStance);
         punchAction.StartPrepare();
+        punchInt.SetInt(1);
     }
 
     public void PrepareShield()
     {
         SoundManager.PlaySound(SoundType.ShieldStance);
         shieldAction.StartPrepare();
+        shieldInt.SetInt(1);
     }
 
     public void TryUseLaser()
@@ -182,13 +197,15 @@ public class Robot : MonoBehaviour
 
     protected virtual void HandleOnActivatePunch()
     {
+        punchInt.SetInt(2);
         SoundManager.PlaySound(SoundType.FistBeingLaunched);
         target.ReceivePunch();
     }
 
     protected virtual void HandleOnBlockPunch()
     {
-        //TODO BREAK SHIELD
+        SoundManager.PlaySound(SoundType.PunchHittingShield);
+        shieldAction.ForceCancel();
     }
 
     public virtual void SetCharges(int newCharges)
@@ -210,6 +227,7 @@ public class Robot : MonoBehaviour
         punchAction.ForceCancel();
         Debug.Log($"{name} took damage. Health: {health}");
 
+        damageTrigger.SetTrigger();
         StartCoroutine(Blink());
 
         IEnumerator Blink()

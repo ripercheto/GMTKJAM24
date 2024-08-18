@@ -43,4 +43,9 @@ public class AnimatorHandler
     {
         animator.SetFloat(animatorParameter, value);
     }
+
+    public void SetInt(int value)
+    {
+        animator.SetInteger(animatorParameter, value);
+    }
 }

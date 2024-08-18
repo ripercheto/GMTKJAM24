@@ -105,6 +105,15 @@ MonoBehaviour:
   health: 4
   chargePerBattery: 4
   target: {fileID: 0}
+  damageTrigger:
+    animator: {fileID: 6395042979733787587}
+    animatorParameter: 375673178
+  punchInt:
+    animator: {fileID: 6395042979733787587}
+    animatorParameter: -316645540
+  shieldInt:
+    animator: {fileID: 6395042979733787587}
+    animatorParameter: 423614430
   laserCost: 4
   laserCooldown: 10
   laserEffectSocket: {fileID: 7196346823688624179}
@@ -470,6 +479,12 @@ PrefabInstance:
 --- !u!4 &5414203329771237982 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8132879638651358161, guid: 3136c5e15e22f6c47934ce295146d39f,
+    type: 3}
+  m_PrefabInstance: {fileID: 4323129976952076687}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &6395042979733787587 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7152022396624529996, guid: 3136c5e15e22f6c47934ce295146d39f,
     type: 3}
   m_PrefabInstance: {fileID: 4323129976952076687}
   m_PrefabAsset: {fileID: 0}

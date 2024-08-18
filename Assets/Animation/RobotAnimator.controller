@@ -171,7 +171,7 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 6142554103533835318}
-    m_Position: {x: 520, y: 170, z: 0}
+    m_Position: {x: 520, y: 190, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2675421688749145553}
     m_Position: {x: 310, y: 290, z: 0}
@@ -314,7 +314,7 @@ AnimatorController:
     m_Behaviours: []
     m_BlendingMode: 0
     m_SyncedLayerIndex: -1
-    m_DefaultWeight: 0
+    m_DefaultWeight: 1
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
@@ -550,7 +550,7 @@ AnimatorStateMachine:
     m_Position: {x: 540, y: 210, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7368954663586749069}
-    m_Position: {x: 410, y: 340, z: 0}
+    m_Position: {x: 330, y: 450, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 7920576478959218639}
     m_Position: {x: 163.25476, y: 296.54858, z: 0}

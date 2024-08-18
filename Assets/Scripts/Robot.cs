@@ -17,8 +17,10 @@ public class Robot : MonoBehaviour
     public int chargePerBattery = 4;
     public Robot target;
 
+    public bool winOnDeath;
+
     public Healthbar healthbar;
-    
+
     [BoxGroup("Animation")]
     public AnimatorHandler damageTrigger;
     [BoxGroup("Animation")]
@@ -232,7 +234,6 @@ public class Robot : MonoBehaviour
         UpdatePowerMaterial();
     }
 
-    [Button]
     private void TakeDamage()
     {
         health--;
@@ -249,6 +250,18 @@ public class Robot : MonoBehaviour
             playerMaterial.SetKeyword(playerEmissionKeyword, true);
             yield return new WaitForSeconds(0.5f);
             playerMaterial.SetKeyword(playerEmissionKeyword, false);
+
+            if (health == 0)
+            {
+                if (winOnDeath)
+                {
+                    GameSceneManager.Victory();
+                }
+                else
+                {
+                    GameSceneManager.Defeat();
+                }
+            }
         }
     }
 

@@ -24,6 +24,10 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
+        if (walkableArea == null)
+        {
+            return;
+        }
         SetWalkableArea(walkableArea);
     }
 

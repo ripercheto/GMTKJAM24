@@ -1920,6 +1920,23 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 265401539853192648, guid: 492d1fd35be38b64b889e11df55947c8,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1071a8859da28ce4bb626ba08833bdf0,
+        type: 3}
+    - target: {fileID: 356477524900588863, guid: 492d1fd35be38b64b889e11df55947c8,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1071a8859da28ce4bb626ba08833bdf0,
+        type: 3}
+    - target: {fileID: 679632433885339185, guid: 492d1fd35be38b64b889e11df55947c8,
+        type: 3}
+      propertyPath: m_FillOrigin
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1472179258684209615, guid: 492d1fd35be38b64b889e11df55947c8,
         type: 3}
       propertyPath: m_IsActive
@@ -1961,6 +1978,11 @@ PrefabInstance:
         type: 3}
       propertyPath: insertBatteryText
       value: Insert battery
+      objectReference: {fileID: 0}
+    - target: {fileID: 2849144889076514263, guid: 492d1fd35be38b64b889e11df55947c8,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 93
       objectReference: {fileID: 0}
     - target: {fileID: 4584290281254842111, guid: 492d1fd35be38b64b889e11df55947c8,
         type: 3}
@@ -2038,6 +2060,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 8690143320662553456, guid: 492d1fd35be38b64b889e11df55947c8,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -93
+      objectReference: {fileID: 0}
+    - target: {fileID: 8690143320662553456, guid: 492d1fd35be38b64b889e11df55947c8,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -1045
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

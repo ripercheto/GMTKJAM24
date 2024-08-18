@@ -206,11 +206,11 @@ public class Robot : MonoBehaviour
         switch (powerDirectionType)
         {
             case PowerDirectionType.Left:
-                leftMaterial.SetColor(Color1, charges == 0 ? powerInactiveColor : powerActiveColor);
+                leftMaterial.SetColor(Color1, charges < shieldAction.cost ? powerInactiveColor : powerActiveColor);
                 rightMaterial.SetColor(Color1, powerWrongSideColor);
                 break;
             case PowerDirectionType.Right:
-                rightMaterial.SetColor(Color1, charges == 0 ? powerInactiveColor : powerActiveColor);
+                rightMaterial.SetColor(Color1, charges < punchAction.cost ? powerInactiveColor : powerActiveColor);
                 leftMaterial.SetColor(Color1, powerWrongSideColor);
                 break;
             default:

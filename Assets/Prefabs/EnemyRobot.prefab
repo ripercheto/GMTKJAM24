@@ -51,39 +51,39 @@ MonoBehaviour:
   shieldFlow:
     enemyPowerTarget: 0
     enemyPowerOnTargetSideDelay:
-      min: 7
+      min: 8
       max: 12
     targetSideChanceToLaser: 0.2
     targetSideChanceToAction: 0.8
     enemyPowerOnOtherSideDelay:
-      min: 7
+      min: 8
       max: 12
     otherSideChanceToPrepare: 0.4
     otherSideChanceToPrepareSwitchPowerDelay:
-      min: 7
+      min: 8
       max: 12
     otherSideChanceToSwitchPower: 0.4
     otherSideChanceToSwitchPowerDelay:
-      min: 7
+      min: 8
       max: 12
     otherSideChanceToLaser: 0.2
   punchFlow:
     enemyPowerTarget: 1
     enemyPowerOnTargetSideDelay:
-      min: 7
+      min: 8
       max: 12
     targetSideChanceToLaser: 0.2
     targetSideChanceToAction: 0.8
     enemyPowerOnOtherSideDelay:
-      min: 7
+      min: 8
       max: 12
     otherSideChanceToPrepare: 0.4
     otherSideChanceToPrepareSwitchPowerDelay:
-      min: 7
+      min: 8
       max: 12
     otherSideChanceToSwitchPower: 0.4
     otherSideChanceToSwitchPowerDelay:
-      min: 7
+      min: 8
       max: 12
     otherSideChanceToLaser: 0.2
   playerLeftChanceToLeft: 0.3
@@ -457,11 +457,6 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: bb95d34285fa6424b8fe8f45e5a23f38, type: 2}
-    - target: {fileID: 7152022396624529996, guid: 3136c5e15e22f6c47934ce295146d39f,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: ec26469d945da964b9299fd1d2f833e2, type: 2}
     - target: {fileID: 7192866475517435359, guid: 3136c5e15e22f6c47934ce295146d39f,
         type: 3}
       propertyPath: m_Materials.Array.data[0]

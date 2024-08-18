@@ -1,13 +1,12 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameSceneManager : MonoBehaviour
 {
-    public int victoryScene, defeatScene;
     private static GameSceneManager sceneManager;
+    private static bool gameEnded;
+    public int victoryScene, defeatScene;
 
     private void Awake()
     {
@@ -16,11 +15,27 @@ public class GameSceneManager : MonoBehaviour
 
     public static void Victory()
     {
-        SceneManager.LoadScene(sceneManager.victoryScene);
+        if (gameEnded)
+        {
+            return;
+        }
+        gameEnded = true;
+        sceneManager.StartCoroutine(DelayedEnd(sceneManager.victoryScene));
     }
 
     public static void Defeat()
     {
-        SceneManager.LoadScene(sceneManager.defeatScene);
+        if (gameEnded)
+        {
+            return;
+        }
+        gameEnded = true;
+        sceneManager.StartCoroutine(DelayedEnd(sceneManager.defeatScene));
+    }
+
+    private static IEnumerator DelayedEnd(int scene)
+    {
+        yield return new WaitForSeconds(2);
+        SceneManager.LoadScene(scene);
     }
 }

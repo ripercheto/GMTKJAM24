@@ -108,7 +108,7 @@ MonoBehaviour:
   target: {fileID: 0}
   laserCost: 4
   laserCooldown: 5
-  laserEffectSocket: {fileID: 0}
+  laserEffectSocket: {fileID: 7196346823688624179}
   laserEffectPrefab: {fileID: 643361954127317881, guid: cf38dba991be90442b567d1506e76f17,
     type: 3}
   laserEffectDestroyDelay: 2
@@ -467,6 +467,12 @@ PrefabInstance:
 --- !u!4 &5414203329771237982 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8132879638651358161, guid: 3136c5e15e22f6c47934ce295146d39f,
+    type: 3}
+  m_PrefabInstance: {fileID: 4323129976952076687}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7196346823688624179 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6350172789028856252, guid: 3136c5e15e22f6c47934ce295146d39f,
     type: 3}
   m_PrefabInstance: {fileID: 4323129976952076687}
   m_PrefabAsset: {fileID: 0}

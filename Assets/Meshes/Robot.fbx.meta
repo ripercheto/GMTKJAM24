@@ -12,6 +12,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: ColorLineMid
+    second: {fileID: 2100000, guid: e58bbf67ad79aab49bc8a25982d1a84a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: ColorLineR
     second: {fileID: 2100000, guid: 43ed37a1c0cdf8f41a361a2c4cf9ebe8, type: 2}
   materials:

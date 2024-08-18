@@ -7,8 +7,9 @@ public class PlayerRobot : Robot
     public List<WalkablePolygon> leftArmAreas, rightArmAreas;
     public WalkablePolygon leftRespawnArea, rightRespawnArea;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         GameCanvas.instance.EmptyBattery();
     }
 

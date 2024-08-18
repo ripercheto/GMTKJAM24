@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using Sirenix.OdinInspector;
+using SmallHedge.SoundManager;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -79,20 +80,18 @@ public class Robot : MonoBehaviour
         playerEmissionKeyword = new LocalKeyword(playerMaterial.shader, "_EMISSION");
         shieldAction.Initialize(this, HandleShieldActive, HandleShieldIdle);
         punchAction.Initialize(this, HandleOnActivatePunch);
-    }
-
-    private void Start()
-    {
         SetCharges(0);
     }
 
     private void HandleShieldActive()
     {
+        SoundManager.PlaySound(SoundType.ShieldActivating);
         shieldAnimatorHandler.SetBool(true);
     }
 
     private void HandleShieldIdle()
     {
+        SoundManager.PlaySound(SoundType.ShieldDeactivating);
         shieldAnimatorHandler.SetBool(false);
     }
 
@@ -107,11 +106,13 @@ public class Robot : MonoBehaviour
     {
         if (shieldAction.State == RobotActionStateType.Active)
         {
+            SoundManager.PlaySound(SoundType.PunchHittingShield);
             HandleOnBlockPunch();
             shieldAction.TryCancelActiveState();
         }
         else
         {
+            SoundManager.PlaySound(SoundType.PunchHittingRobot);
             TakeDamage();
         }
     }
@@ -132,11 +133,13 @@ public class Robot : MonoBehaviour
 
     public void PreparePunch()
     {
+        SoundManager.PlaySound(SoundType.PunchStance);
         punchAction.StartPrepare();
     }
 
     public void PrepareShield()
     {
+        SoundManager.PlaySound(SoundType.ShieldStance);
         shieldAction.StartPrepare();
     }
 
@@ -150,6 +153,7 @@ public class Robot : MonoBehaviour
         SetCharges(charges - laserCost);
         laserUseTime = Time.time + laserCooldown;
         target.ReceiveLaser();
+        SoundManager.PlaySound(SoundType.FiringLaser);
 
         StartCoroutine(CooldownEffect());
         StartCoroutine(DestroyLaser());
@@ -178,6 +182,7 @@ public class Robot : MonoBehaviour
 
     protected virtual void HandleOnActivatePunch()
     {
+        SoundManager.PlaySound(SoundType.FistBeingLaunched);
         target.ReceivePunch();
     }
 

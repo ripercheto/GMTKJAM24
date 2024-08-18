@@ -1,3 +1,4 @@
+using SmallHedge.SoundManager;
 using UnityEngine;
 
 public class BatteryDispenserInteractable : Interactable
@@ -44,6 +45,7 @@ public class BatteryDispenserInteractable : Interactable
         }
         AddCharge(1);
         battery = Instantiate(batteryPrefab, socket);
+        SoundManager.PlaySound(SoundType.BatteryAppearing);
     }
 
     protected override void HandleInteraction(Player player)
@@ -57,6 +59,7 @@ public class BatteryDispenserInteractable : Interactable
         {
             return;
         }
+        SoundManager.PlaySound(SoundType.GrabbingBattery);
         player.GiveBattery(battery);
         battery = null;
         AddCharge(-1);

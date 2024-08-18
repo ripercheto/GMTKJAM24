@@ -15,5 +15,8 @@ namespace SmallHedge.SoundManager
         ShieldDeactivating,
         BatteryAppearing,
         SwitchingLever,
+        GrabbingBattery,
+        DepositingBattery,
+        PunchHittingShield
     }
 }

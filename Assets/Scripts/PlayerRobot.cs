@@ -15,8 +15,11 @@ public class PlayerRobot : Robot
     public override void ReceivePunch()
     {
         base.ReceivePunch();
-        var leftSide = player.transform.position.x < 0;
-        player.MakeFallOff(leftSide ? leftRespawnArea : rightRespawnArea);
+        if (shieldAction.State != RobotActionStateType.Active)
+        {
+            var leftSide = player.transform.position.x < 0;
+            player.MakeFallOff(leftSide ? leftRespawnArea : rightRespawnArea);
+        }
     }
 
     protected override void HandleOnActivatePunch()

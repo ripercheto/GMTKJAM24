@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class Robot : MonoBehaviour
 {
@@ -36,6 +37,8 @@ public class Robot : MonoBehaviour
     [BoxGroup("Punch")]
     public RobotAction punchAction;
 
+    [BoxGroup("Punch")]
+    public Material playerMaterial;
     [BoxGroup("Power")]
     public Material leftMaterial, rightMaterial;
     [BoxGroup("Power"), ColorUsage(false, true)]
@@ -66,9 +69,11 @@ public class Robot : MonoBehaviour
 
     private float laserUseTime;
     private static readonly int Color1 = Shader.PropertyToID("_EmissionColor");
+    private LocalKeyword playerEmissionKeyword;
 
     private void Awake()
     {
+        playerEmissionKeyword = new LocalKeyword(playerMaterial.shader, "_EMISSION");
         shieldAction.Initialize(this, HandleShieldActive, HandleShieldIdle);
         punchAction.Initialize(this, HandleOnActivatePunch);
         UpdatePowerMaterial();
@@ -180,12 +185,22 @@ public class Robot : MonoBehaviour
         UpdatePowerMaterial();
     }
 
+    [Button]
     private void TakeDamage()
     {
         health--;
         shieldAction.ForceCancel();
         punchAction.ForceCancel();
         Debug.Log($"{name} took damage. Health: {health}");
+
+        StartCoroutine(Blink());
+
+        IEnumerator Blink()
+        {
+            playerMaterial.SetKeyword(playerEmissionKeyword, true);
+            yield return new WaitForSeconds(0.1f);
+            playerMaterial.SetKeyword(playerEmissionKeyword, false);
+        }
     }
 
     public static PowerDirectionType Cycle(PowerDirectionType type)

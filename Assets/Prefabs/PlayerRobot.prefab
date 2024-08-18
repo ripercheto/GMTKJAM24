@@ -629,6 +629,7 @@ MonoBehaviour:
     prepareTime: 2
     activeTime: 0.2
     direction: 1
+  playerMaterial: {fileID: 2100000, guid: 64c4943756909b1419fd820dfbd7f895, type: 2}
   leftMaterial: {fileID: 2100000, guid: 3f8c361479f2c2b45be41432ee615bfe, type: 2}
   rightMaterial: {fileID: 2100000, guid: 43ed37a1c0cdf8f41a361a2c4cf9ebe8, type: 2}
   powerActiveColor: {r: 0.17230701, g: 4, b: 0, a: 1}

@@ -108,7 +108,7 @@ MonoBehaviour:
   target: {fileID: 0}
   laserCost: 4
   laserCooldown: 5
-  laserEffectSocket: {fileID: 2442329289425072349}
+  laserEffectSocket: {fileID: 1789692944000222524}
   laserEffectPrefab: {fileID: 643361954127317881, guid: cf38dba991be90442b567d1506e76f17,
     type: 3}
   laserEffectDestroyDelay: 2
@@ -128,6 +128,12 @@ MonoBehaviour:
     prepareTime: 2
     activeTime: 0.2
     direction: 1
+  playerMaterial: {fileID: 0}
+  leftMaterial: {fileID: 0}
+  rightMaterial: {fileID: 0}
+  powerActiveColor: {r: 0, g: 0, b: 0, a: 0}
+  powerInactiveColor: {r: 0, g: 0, b: 0, a: 0}
+  powerWrongSideColor: {r: 0, g: 0, b: 0, a: 0}
   charges: 0
   powerDirectionType: 0
 --- !u!1001 &180639733848398589
@@ -284,9 +290,9 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3136c5e15e22f6c47934ce295146d39f, type: 3}
---- !u!4 &2442329289425072349 stripped
+--- !u!4 &1789692944000222524 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 1880871059245533522, guid: 3136c5e15e22f6c47934ce295146d39f,
+  m_CorrespondingSourceObject: {fileID: 2533437033762405555, guid: 3136c5e15e22f6c47934ce295146d39f,
     type: 3}
   m_PrefabInstance: {fileID: 4323129976952076687}
   m_PrefabAsset: {fileID: 0}

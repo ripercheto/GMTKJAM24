@@ -26,6 +26,7 @@ public class Player : MonoBehaviour
     {
         if (walkableArea == null)
         {
+            isKinematic = true;
             return;
         }
         SetWalkableArea(walkableArea);

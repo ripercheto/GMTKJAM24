@@ -22,6 +22,16 @@ public class PlayerRobot : Robot
         base.ReceivePunch();
     }
 
+    public override void ReceiveLaser()
+    {
+        if (shieldAction.State != RobotActionStateType.Active)
+        {
+            var leftSide = player.transform.position.x < 0;
+            player.MakeFallOff(leftSide ? leftRespawnArea : rightRespawnArea);
+        }
+        base.ReceiveLaser();
+    }
+
     protected override void HandleOnActivatePunch()
     {
         base.HandleOnActivatePunch();

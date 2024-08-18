@@ -11,6 +11,7 @@ public class GameSceneManager : MonoBehaviour
     private void Awake()
     {
         sceneManager = this;
+        gameEnded = false;
     }
 
     public static void Victory()

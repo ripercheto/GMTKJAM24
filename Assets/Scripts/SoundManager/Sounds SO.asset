@@ -13,8 +13,53 @@ MonoBehaviour:
   m_Name: Sounds SO
   m_EditorClassIdentifier: 
   sounds:
-  - name: 
+  - name: NotEnoughPower
     volume: 1
     mixer: {fileID: 0}
     sounds:
     - {fileID: 8300000, guid: 225d4a4d93504be43a358d4beab67cd3, type: 3}
+  - name: PunchStance
+    volume: 1
+    mixer: {fileID: 0}
+    sounds:
+    - {fileID: 8300000, guid: fd3fbba52cdcf44448bf0fb0470317d8, type: 3}
+  - name: ShieldStance
+    volume: 1
+    mixer: {fileID: 0}
+    sounds:
+    - {fileID: 8300000, guid: 647fece322074b64fac23250974443c9, type: 3}
+  - name: PunchHittingRobot
+    volume: 1
+    mixer: {fileID: 0}
+    sounds:
+    - {fileID: 8300000, guid: 8857cc788c99a0f41a7a415156e4452a, type: 3}
+  - name: FiringLaser
+    volume: 1
+    mixer: {fileID: 0}
+    sounds:
+    - {fileID: 8300000, guid: 19dc9687170b4094f9d63179173681f5, type: 3}
+  - name: FistBeingLaunched
+    volume: 1
+    mixer: {fileID: 0}
+    sounds:
+    - {fileID: 8300000, guid: fdd4c68feed32334f9a7d02041d23674, type: 3}
+  - name: ShieldActivating
+    volume: 1
+    mixer: {fileID: 0}
+    sounds:
+    - {fileID: 8300000, guid: 8b1d9f1c316d35e419ce95451619697f, type: 3}
+  - name: ShieldDeactivating
+    volume: 1
+    mixer: {fileID: 0}
+    sounds:
+    - {fileID: 8300000, guid: 9053c7dc4c98c354e9566d869034544d, type: 3}
+  - name: BatteryAppearing
+    volume: 1
+    mixer: {fileID: 0}
+    sounds:
+    - {fileID: 8300000, guid: b2e821db06cd8bb428a1478246506e17, type: 3}
+  - name: SwitchingLever
+    volume: 1
+    mixer: {fileID: 0}
+    sounds:
+    - {fileID: 8300000, guid: f0c7ba58be0a2e546bd02d66df2cc53d, type: 3}

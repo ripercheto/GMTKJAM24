@@ -8,8 +8,11 @@ public class GameCanvas : MonoBehaviour
 {
     public static GameCanvas instance;
     public TextMeshProUGUI interactionText;
+    public TextMeshProUGUI batteryText;
 
     private List<Interactable> interactables = new();
+    public string emptyBatteryText = "EMPTY BATTERY";
+    public string insertBatteryText = "INSERT BATTERY";
 
     private void Awake()
     {
@@ -36,5 +39,22 @@ public class GameCanvas : MonoBehaviour
             interactables.RemoveAt(0);
             interactionText.SetText(first.textToShow);
         }
+    }
+
+    public void EmptyBattery()
+    {
+        batteryText.gameObject.SetActive(true);
+        batteryText.SetText(emptyBatteryText);
+    }
+
+    public void InsertBattery()
+    {
+        batteryText.gameObject.SetActive(true);
+        batteryText.SetText(insertBatteryText);
+    }
+
+    public void HideBattery()
+    {
+        batteryText.gameObject.SetActive(false);
     }
 }

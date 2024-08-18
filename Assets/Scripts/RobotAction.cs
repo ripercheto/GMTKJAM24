@@ -65,7 +65,7 @@ public class RobotAction
         }
 
         State = RobotActionStateType.Active;
-        robot.charges -= cost;
+        robot.SetCharges(robot.charges - cost);
         activeAction?.Invoke();
 
         activeCoroutine = robot.StartCoroutine(HandleCooldown());

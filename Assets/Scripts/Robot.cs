@@ -73,7 +73,7 @@ public class Robot : MonoBehaviour
 
     public void ReceiveBattery()
     {
-        charges = chargePerBattery;
+        SetCharges(chargePerBattery);
         shieldAction.TryActivateState();
         punchAction.TryActivateState();
     }
@@ -121,7 +121,7 @@ public class Robot : MonoBehaviour
             return;
         }
 
-        charges -= laserCost;
+        SetCharges(charges - laserCost);
         laserUseTime = Time.time + laserCooldown;
         target.ReceiveLaser();
 
@@ -158,6 +158,11 @@ public class Robot : MonoBehaviour
     protected virtual void HandleOnBlockPunch()
     {
         //TODO BREAK SHIELD
+    }
+
+    public virtual void SetCharges(int newCharges)
+    {
+        charges = newCharges;
     }
 
     private void TakeDamage()

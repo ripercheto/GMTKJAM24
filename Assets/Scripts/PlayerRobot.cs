@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 public class PlayerRobot : Robot
@@ -5,6 +6,11 @@ public class PlayerRobot : Robot
     public Player player;
     public List<WalkablePolygon> leftArmAreas, rightArmAreas;
     public WalkablePolygon leftRespawnArea, rightRespawnArea;
+
+    private void Start()
+    {
+        GameCanvas.instance.EmptyBattery();
+    }
 
     public override void ReceivePunch()
     {
@@ -39,5 +45,18 @@ public class PlayerRobot : Robot
             return;
         }
         player.MakeFallOff(leftRespawnArea);
+    }
+
+    public override void SetCharges(int newCharges)
+    {
+        base.SetCharges(newCharges);
+        if (charges > 0)
+        {
+            GameCanvas.instance.HideBattery();
+        }
+        if (charges == 0)
+        {
+            GameCanvas.instance.EmptyBattery();
+        }
     }
 }

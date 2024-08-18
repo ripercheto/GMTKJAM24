@@ -43,10 +43,13 @@ public class Player : MonoBehaviour
         battery = batteryObject;
         battery.transform.parent = batterySocket;
         battery.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+        
+        GameCanvas.instance.InsertBattery();
     }
 
     public GameObject RemoveBattery()
     {
+        GameCanvas.instance.InsertBattery();
         battery.transform.parent = null;
         return battery;
     }

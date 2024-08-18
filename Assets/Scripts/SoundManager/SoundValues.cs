@@ -5,7 +5,15 @@ namespace SmallHedge.SoundManager
 {
     public enum SoundType
     {
-        //Put sound names in here
-        
+        NotEnoughPower,
+        PunchStance,
+        ShieldStance,
+        PunchHittingRobot,
+        FiringLaser,
+        FistBeingLaunched,
+        ShieldActivating,
+        ShieldDeactivating,
+        BatteryAppearing,
+        SwitchingLever,
     }
 }

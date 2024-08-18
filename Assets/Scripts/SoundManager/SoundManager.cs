@@ -2,6 +2,7 @@
 //Updated: 13/06/2024
 
 using System;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -47,6 +48,9 @@ namespace SmallHedge.SoundManager
     [Serializable]
     public struct SoundList
     {
+        [ShowInInspector, ReadOnly, PropertyOrder(-1)]
+        public SoundType Type { get; set; }
+
         [HideInInspector] public string name;
         [Range(0, 1)] public float volume;
         public AudioMixerGroup mixer;

@@ -79,6 +79,10 @@ public class Robot : MonoBehaviour
         playerEmissionKeyword = new LocalKeyword(playerMaterial.shader, "_EMISSION");
         shieldAction.Initialize(this, HandleShieldActive, HandleShieldIdle);
         punchAction.Initialize(this, HandleOnActivatePunch);
+    }
+
+    private void Start()
+    {
         SetCharges(0);
     }
 

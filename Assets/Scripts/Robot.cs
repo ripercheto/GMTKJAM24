@@ -24,6 +24,8 @@ public class Robot : MonoBehaviour
     public GameObject laserEffectPrefab;
     [BoxGroup("Laser")]
     public float laserEffectDestroyDelay = 2;
+    [BoxGroup("Laser")]
+    public ParticleSystem[] laserCooldownEffect;
 
     public RobotAction shieldAction;
     public RobotAction punchAction;
@@ -113,7 +115,21 @@ public class Robot : MonoBehaviour
         laserUseTime = Time.time + laserCooldown;
         target.ReceiveLaser();
 
+        StartCoroutine(CooldownEffect());
         StartCoroutine(DestroyLaser());
+
+        IEnumerator CooldownEffect()
+        {
+            foreach (var ps in laserCooldownEffect)
+            {
+                ps.Play();
+            }
+            yield return new WaitForSeconds(laserCooldown);
+            foreach (var ps in laserCooldownEffect)
+            {
+                ps.Stop();
+            }
+        }
 
         IEnumerator DestroyLaser()
         {

@@ -987,8 +987,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0c864d66eea26a4a9d32256a734e714, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  victoryScene: 0
-  defeatScene: 0
+  victoryScene: 2
+  defeatScene: 3
 --- !u!4 &977085030
 Transform:
   m_ObjectHideFlags: 0

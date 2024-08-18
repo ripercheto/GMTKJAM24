@@ -1,0 +1,97 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: LeftArm
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: IK ArmL
+    m_Weight: 0
+  - m_Path: IK ArmR
+    m_Weight: 0
+  - m_Path: IK LegL
+    m_Weight: 0
+  - m_Path: IK LegL/PoleLegL
+    m_Weight: 0
+  - m_Path: IK LegR
+    m_Weight: 0
+  - m_Path: IK LegR/PoleLegR
+    m_Weight: 0
+  - m_Path: Pelvis
+    m_Weight: 0
+  - m_Path: Pelvis/ArmUpL.001
+    m_Weight: 0
+  - m_Path: Pelvis/ArmUpL.001/ArmLowL.001
+    m_Weight: 0
+  - m_Path: Pelvis/ArmUpL.001/ArmLowL.001/LegLowL
+    m_Weight: 0
+  - m_Path: Pelvis/ArmUpL.001/LegUpL
+    m_Weight: 0
+  - m_Path: Pelvis/LegUpR
+    m_Weight: 0
+  - m_Path: Pelvis/LegUpR/LegLowR
+    m_Weight: 0
+  - m_Path: Pelvis/LegUpR/LegLowR/LegLowR
+    m_Weight: 0
+  - m_Path: Pelvis/LegUpR/LegUpR
+    m_Weight: 0
+  - m_Path: Pelvis/Pelvis
+    m_Weight: 0
+  - m_Path: Pelvis/Waist
+    m_Weight: 0
+  - m_Path: Pelvis/Waist/Torso
+    m_Weight: 0
+  - m_Path: Pelvis/Waist/Torso/Head
+    m_Weight: 0
+  - m_Path: Pelvis/Waist/Torso/Head/Head
+    m_Weight: 0
+  - m_Path: Pelvis/Waist/Torso/ShoulderL
+    m_Weight: 1
+  - m_Path: Pelvis/Waist/Torso/ShoulderL/ArmUpL
+    m_Weight: 1
+  - m_Path: Pelvis/Waist/Torso/ShoulderL/ArmUpL/ArmLowL
+    m_Weight: 1
+  - m_Path: Pelvis/Waist/Torso/ShoulderL/ArmUpL/ArmLowL/ArmLowL
+    m_Weight: 1
+  - m_Path: Pelvis/Waist/Torso/ShoulderL/ArmUpL/ArmLowL/HandL
+    m_Weight: 1
+  - m_Path: Pelvis/Waist/Torso/ShoulderL/ArmUpL/ArmLowL/HandL/HandL
+    m_Weight: 1
+  - m_Path: Pelvis/Waist/Torso/ShoulderL/ArmUpL/ArmUpL
+    m_Weight: 1
+  - m_Path: Pelvis/Waist/Torso/ShoulderL/ShoulderL.001
+    m_Weight: 1
+  - m_Path: Pelvis/Waist/Torso/ShoulderR
+    m_Weight: 0
+  - m_Path: Pelvis/Waist/Torso/ShoulderR/ArmUpR
+    m_Weight: 0
+  - m_Path: Pelvis/Waist/Torso/ShoulderR/ArmUpR/ArmLowR
+    m_Weight: 0
+  - m_Path: Pelvis/Waist/Torso/ShoulderR/ArmUpR/ArmLowR/ArmL
+    m_Weight: 0
+  - m_Path: Pelvis/Waist/Torso/ShoulderR/ArmUpR/ArmLowR/HandR
+    m_Weight: 0
+  - m_Path: Pelvis/Waist/Torso/ShoulderR/ArmUpR/ArmLowR/HandR/HandR
+    m_Weight: 0
+  - m_Path: Pelvis/Waist/Torso/ShoulderR/ArmUpR/ArmUpR
+    m_Weight: 0
+  - m_Path: Pelvis/Waist/Torso/ShoulderR/ShoulderL
+    m_Weight: 0
+  - m_Path: Pelvis/Waist/Torso/Torso
+    m_Weight: 0
+  - m_Path: Pelvis/Waist/Waist
+    m_Weight: 0
+  - m_Path: Pelvis/Waist/Waist/Switch
+    m_Weight: 0
+  - m_Path: PoleArmL
+    m_Weight: 0
+  - m_Path: PoleArmR
+    m_Weight: 0
+  - m_Path: Root
+    m_Weight: 0

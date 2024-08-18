@@ -1694,6 +1694,11 @@ PrefabInstance:
       objectReference: {fileID: 623247249}
     - target: {fileID: 8644410822508435936, guid: dca4b6ee950778c44a800dfbf08e19e2,
         type: 3}
+      propertyPath: healthbar
+      value: 
+      objectReference: {fileID: 4642891453071325478}
+    - target: {fileID: 8644410822508435936, guid: dca4b6ee950778c44a800dfbf08e19e2,
+        type: 3}
       propertyPath: powerActiveColor.a
       value: 1
       objectReference: {fileID: 0}
@@ -1840,6 +1845,30 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 492d1fd35be38b64b889e11df55947c8, type: 3}
+--- !u!114 &4642891453071325478 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1058854373122553506, guid: 492d1fd35be38b64b889e11df55947c8,
+    type: 3}
+  m_PrefabInstance: {fileID: 4642891453071325477}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68167d19700e8224aa687d87b5e4dcd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4642891453071325479 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5043514769559840164, guid: 492d1fd35be38b64b889e11df55947c8,
+    type: 3}
+  m_PrefabInstance: {fileID: 4642891453071325477}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68167d19700e8224aa687d87b5e4dcd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6753293223727005043
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1968,6 +1997,11 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 2043483399}
+    - target: {fileID: 3364565065417454356, guid: 6baaba261f4a1b84493d35ed838f5bdb,
+        type: 3}
+      propertyPath: healthbar
+      value: 
+      objectReference: {fileID: 4642891453071325479}
     - target: {fileID: 3396472802920963985, guid: 6baaba261f4a1b84493d35ed838f5bdb,
         type: 3}
       propertyPath: area

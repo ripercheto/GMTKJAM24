@@ -17,6 +17,8 @@ public class Robot : MonoBehaviour
     public int chargePerBattery = 4;
     public Robot target;
 
+    public Healthbar healthbar;
+    
     [BoxGroup("Animation")]
     public AnimatorHandler damageTrigger;
     [BoxGroup("Animation")]
@@ -84,6 +86,7 @@ public class Robot : MonoBehaviour
 
     private void Awake()
     {
+        healthbar.Initialize(health);
         playerEmissionKeyword = new LocalKeyword(playerMaterial.shader, "_EMISSION");
         shieldAction.Initialize(this, HandleShieldActive, HandleShieldIdle, HandlePrepareShield);
         punchAction.Initialize(this, HandleOnActivatePunch, HandlePunchIdle, HandlePreparePunch);
@@ -136,7 +139,6 @@ public class Robot : MonoBehaviour
         {
             SoundManager.PlaySound(SoundType.PunchHittingShield);
             shieldAction.ForceCancel();
-            return;
         }
         else
         {
@@ -234,6 +236,7 @@ public class Robot : MonoBehaviour
     private void TakeDamage()
     {
         health--;
+        healthbar.SetHealth(health);
         shieldAction.ForceCancel();
         punchAction.ForceCancel();
         Debug.Log($"{name} took damage. Health: {health}");

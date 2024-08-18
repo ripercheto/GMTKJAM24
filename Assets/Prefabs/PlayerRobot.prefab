@@ -619,7 +619,7 @@ MonoBehaviour:
   shieldAction:
     cost: 1
     prepareTime: 0
-    activeTime: 15
+    activeTime: 10
     direction: 0
   punchAction:
     cost: 2

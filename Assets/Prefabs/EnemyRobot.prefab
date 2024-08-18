@@ -115,7 +115,7 @@ MonoBehaviour:
     animator: {fileID: 6395042979733787587}
     animatorParameter: 423614430
   laserCost: 4
-  laserCooldown: 10
+  laserCooldown: 30
   laserEffectSocket: {fileID: 7196346823688624179}
   laserEffectPrefab: {fileID: 643361954127317881, guid: cf38dba991be90442b567d1506e76f17,
     type: 3}
@@ -128,11 +128,11 @@ MonoBehaviour:
     animatorParameter: -1971915048
   shieldAction:
     cost: 1
-    prepareTime: 2
-    activeTime: 2
+    prepareTime: 0
+    activeTime: 10
     direction: 0
   punchAction:
-    cost: 1
+    cost: 2
     prepareTime: 2
     activeTime: 0.2
     direction: 1

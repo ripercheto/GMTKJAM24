@@ -128,9 +128,13 @@ MonoBehaviour:
     prepareTime: 2
     activeTime: 0.2
     direction: 1
+  activePowerMaterial: {fileID: 0}
+  noPowerMaterial: {fileID: 0}
+  chargesIndicator: []
   playerMaterial: {fileID: 2100000, guid: 3728dc47df82cab4a97e860b1e3cdd6c, type: 2}
   leftMaterial: {fileID: 0}
   rightMaterial: {fileID: 0}
+  middlePowerMaterial: {fileID: 0}
   powerActiveColor: {r: 0, g: 0, b: 0, a: 0}
   powerInactiveColor: {r: 0, g: 0, b: 0, a: 0}
   powerWrongSideColor: {r: 0, g: 0, b: 0, a: 0}
@@ -144,11 +148,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4551940982562614011}
     m_Modifications:
-    - target: {fileID: 2800624835682026401, guid: 38b5c906bf7f372429248f6490a5a815,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 3728dc47df82cab4a97e860b1e3cdd6c, type: 2}
     - target: {fileID: 8697977140583032593, guid: 38b5c906bf7f372429248f6490a5a815,
         type: 3}
       propertyPath: m_LocalPosition.x

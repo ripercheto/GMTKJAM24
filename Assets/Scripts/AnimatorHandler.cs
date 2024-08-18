@@ -38,4 +38,9 @@ public class AnimatorHandler
     {
         animator.SetTrigger(animatorParameter);
     }
+    
+    public void SetFloat(float value)
+    {
+        animator.SetFloat(animatorParameter, value);
+    }
 }

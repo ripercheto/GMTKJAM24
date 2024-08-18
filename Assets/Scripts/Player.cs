@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public AnimatorHandler dieBoolHandler;
+    public AnimatorHandler climbFloatHandler;
+
     public float maxSpeed = 10f;
     public float maxAcceleration = 10f;
     public float respawnDelay = 3;
@@ -43,7 +46,7 @@ public class Player : MonoBehaviour
         battery = batteryObject;
         battery.transform.parent = batterySocket;
         battery.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
-        
+
         GameCanvas.instance.InsertBattery();
     }
 
@@ -59,6 +62,7 @@ public class Player : MonoBehaviour
         isKinematic = true;
         body.isKinematic = false;
         transform.parent = null;
+        dieBoolHandler.SetBool(true);
         body.AddForce(ragDollImpulse, ForceMode.Impulse);
 
         StartCoroutine(Respawn());
@@ -69,6 +73,7 @@ public class Player : MonoBehaviour
             body.isKinematic = true;
             isKinematic = false;
             SetWalkableArea(respawnArea);
+            dieBoolHandler.SetBool(false);
         }
     }
 
@@ -78,7 +83,9 @@ public class Player : MonoBehaviour
         {
             return;
         }
-        var desiredVelocity = PlayerInput.Directional * maxSpeed;
+        var directional = PlayerInput.Directional;
+        climbFloatHandler.SetFloat(directional.magnitude);
+        var desiredVelocity = directional * maxSpeed;
 
         var maxSpeedChange = maxAcceleration * Time.deltaTime;
         velocity.x = Mathf.MoveTowards(velocity.x, desiredVelocity.x, maxSpeedChange);

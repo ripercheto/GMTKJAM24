@@ -788,10 +788,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 435305992}
-  offset: {x: 18, y: 4, z: 0}
-  rotationSpeed: 1
-  rotationLimitsX: {x: -10, y: 5}
-  rotationLimitsY: {x: -10, y: 5}
+  offset: {x: 17, y: -5, z: 0}
+  rotationSpeed: 0.5
+  rotationLimitsX: {x: -6, y: 3}
+  rotationLimitsY: {x: -6, y: 3}
 --- !u!114 &623247249 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3364565065417454356, guid: 6baaba261f4a1b84493d35ed838f5bdb,

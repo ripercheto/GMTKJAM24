@@ -509,6 +509,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9949abe353f953478721d529eb91a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &435305992 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4803653120035083113, guid: 6baaba261f4a1b84493d35ed838f5bdb,
+    type: 3}
+  m_PrefabInstance: {fileID: 6753293223727005043}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &464947188 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7125190356537922793, guid: 6baaba261f4a1b84493d35ed838f5bdb,
@@ -781,7 +787,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14c6e24f490de914f80fdf4a9d7ee666, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {x: 0, y: 0, z: 0}
+  target: {fileID: 435305992}
+  offset: {x: 18, y: 4, z: 0}
+  rotationSpeed: 1
+  rotationLimitsX: {x: -10, y: 5}
+  rotationLimitsY: {x: -10, y: 5}
 --- !u!114 &623247249 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3364565065417454356, guid: 6baaba261f4a1b84493d35ed838f5bdb,

@@ -598,7 +598,7 @@ MonoBehaviour:
   winOnDeath: 0
   healthbar: {fileID: 0}
   animator: {fileID: 7330170244105140193}
-  animatorController: {fileID: 9100000, guid: ec26469d945da964b9299fd1d2f833e2, type: 2}
+  animatorController: {fileID: 9100000, guid: 5578f9685a407ca459a7a864091e81e3, type: 2}
   damageTrigger:
     animator: {fileID: 7330170244105140193}
     animatorParameter: 375673178
@@ -622,12 +622,12 @@ MonoBehaviour:
     animatorParameter: -1971915048
   shieldAction:
     cost: 1
-    prepareTime: 0
+    prepareTime: 1
     activeTime: 10
     direction: 0
   punchAction:
     cost: 2
-    prepareTime: 0
+    prepareTime: 1
     activeTime: 0.2
     direction: 1
   activePowerMaterial: {fileID: 2100000, guid: d48576f2ca6b16842939f6578566237d, type: 2}
@@ -1149,11 +1149,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 7152022396624529996, guid: 3136c5e15e22f6c47934ce295146d39f,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 5578f9685a407ca459a7a864091e81e3, type: 2}
     - target: {fileID: 7962064764059103458, guid: 3136c5e15e22f6c47934ce295146d39f,
         type: 3}
       propertyPath: m_IsActive

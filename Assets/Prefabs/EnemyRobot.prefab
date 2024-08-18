@@ -132,12 +132,12 @@ MonoBehaviour:
     animatorParameter: -1971915048
   shieldAction:
     cost: 1
-    prepareTime: 0
+    prepareTime: 1
     activeTime: 10
     direction: 0
   punchAction:
     cost: 2
-    prepareTime: 2
+    prepareTime: 1
     activeTime: 0.2
     direction: 1
   activePowerMaterial: {fileID: 2100000, guid: d48576f2ca6b16842939f6578566237d, type: 2}
